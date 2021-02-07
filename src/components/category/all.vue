@@ -1,0 +1,34 @@
+<template>
+    <div class="all">
+        <h1>all</h1>
+    </div>
+</template>
+
+<script>
+    import category from "../../assets/js/category";
+
+    export default {
+        name: "all",
+        data(){
+          return {
+
+          }
+        },
+        mounted() {
+            category.typeClassAdd(1);
+            category.curAdd(1)
+        },
+        beforeRouteLeave(to, from, next){
+            category.typeClassRemove(1);
+            next();
+        },
+
+        methods:{
+
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

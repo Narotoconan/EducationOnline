@@ -1,0 +1,23 @@
+@import "../position";
+@import "categoryNav";
+
+.categoryBg{
+  height: 180px;
+  position: relative;
+  background:url("../../../assets/img/test/test1.webp") no-repeat center;
+  background-size: cover;
+  cursor: default;
+  .mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.15);
+    backdrop-filter: blur(30px);
+  }
+  .content{
+    .c-center();
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 宋体;
+    color: #fff;
+  }
+}
