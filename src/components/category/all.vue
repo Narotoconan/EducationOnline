@@ -16,7 +16,10 @@
         },
         mounted() {
             category.typeClassAdd(1);
-            this.$store.commit('showCur','00')
+            this.$store.commit('showCur','00');
+            this.$nextTick(() => {
+                this.$store.commit('activeCur','1');
+            })
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(1);

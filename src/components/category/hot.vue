@@ -9,6 +9,7 @@
 
 <script>
     import category from "../../assets/js/category";
+    import $ from 'jquery'
 
     export default {
         name: "hot",
@@ -20,8 +21,12 @@
         mounted() {
             category.typeClassAdd(5);
             this.$store.commit('showCur','40');
-            this.$store.commit('activeCur','1');
-
+            //category.curAdd(1)
+            //this.$store.commit('activeCur','1');
+            //$(".curList dd:nth-of-type(1)").addClass("curItemActive");
+            this.$nextTick(() => {
+                this.$store.commit('activeCur','1');
+            })
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(5);

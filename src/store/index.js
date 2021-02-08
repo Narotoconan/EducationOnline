@@ -109,6 +109,7 @@ const curriculumList = {
 
     },
     activeCur(state,payload){
+      category.curRemove();
       category.curAdd(payload);
     }
   },

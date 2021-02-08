@@ -2,21 +2,21 @@
     <div class="homeNav">
         <div class="container">
             <ul>
-                <li>
+                <li @click="toRoute('/category/program','30')">
                     <home-nav-item :homeNavData="homeNavData1">
                         <template v-slot:icon>
                             <i class="bi bi-journal-code" style="font-size: 3rem"></i>
                         </template>
                     </home-nav-item>
                 </li>
-                <li>
+                <li @click="toRoute('/category/math','10')">
                     <home-nav-item :homeNavData="homeNavData2">
                         <template v-slot:icon>
                             <i class="bi bi-calculator" style="font-size: 3rem"></i>
                         </template>
                     </home-nav-item>
                 </li>
-                <li>
+                <li @click="toRoute('/category/english','20')">
                     <home-nav-item :homeNavData="homeNavData3">
                         <template v-slot:icon>
                             <i class="bi bi-chat-square-dots" style="font-size: 3rem"></i>
@@ -64,7 +64,16 @@
                     $(this).find("i").removeClass("homeNavItemHover");
                     $(this).find("h5").removeClass("homeNavItemHover");
                 })
+            },
+            toRoute(path,cur){
+                this.$router.push({
+                    path : path,
+                    query:{
+                        cur:cur
+                    }
+                })
             }
+
         }
     }
 </script>

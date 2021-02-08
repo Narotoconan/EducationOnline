@@ -12,8 +12,8 @@
             </dl>
             <dl class="curList">
                 <dt>课程：</dt>
-                <dd v-for="item in $store.state.curriculumList.curriculum"
-                    @click="toCur($route.path,item.theCode)"
+                <dd v-for="(item,index) in $store.state.curriculumList.curriculum"
+                    @click="toCur($route.path,item.theCode),$store.commit('activeCur',index+1)"
                     :itemCode="item.theCode">{{ item.name }}
                 </dd>
             </dl>
