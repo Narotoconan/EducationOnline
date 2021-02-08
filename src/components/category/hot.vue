@@ -19,7 +19,9 @@
         },
         mounted() {
             category.typeClassAdd(5);
-            category.curAdd(1)
+            this.$store.commit('showCur','40');
+            this.$store.commit('activeCur','1');
+
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(5);

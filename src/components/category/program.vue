@@ -17,15 +17,15 @@
         },
         mounted() {
             category.typeClassAdd(4);
-            this.test()
+            this.$store.commit('showCur','30');
+            this.programCur();
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(4);
             next();
         },
         methods:{
-            test(){
-
+            programCur(){
                 switch (this.$route.query.cur) {
                     case '30':
                         category.curRemove();

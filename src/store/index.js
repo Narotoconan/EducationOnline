@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import category from "../assets/js/category";
 
 Vue.use(Vuex)
 
@@ -84,7 +85,33 @@ const curriculumList = {
         theCode: '34'
       },
     ]
-  }
+  },
+  mutations: {
+    showCur(state,payload){
+      switch (payload) {
+        case '00':
+          state.curriculum = state.all;
+          break;
+        case '10':
+          state.curriculum = state.math;
+          break;
+        case '20':
+          state.curriculum = state.english;
+          break;
+        case '30':
+          state.curriculum = state.program;
+          break;
+        case '40':
+          state.curriculum = state.hot;
+          break;
+      }
+
+
+    },
+    activeCur(state,payload){
+      category.curAdd(payload);
+    }
+  },
 }
 
 export default new Vuex.Store({
