@@ -1,6 +1,6 @@
 import $ from 'jquery'
 
-function changeBg(content){
+function changeBgTitle(content){
     $(".categoryBg .content").html(content)
 }
 function typeClassAdd(index) {
@@ -17,7 +17,7 @@ function curRemove() {
 }
 
 export default {
-    changeBg,
+    changeBgTitle,
     typeClassAdd,
     typeClassRemove,
     curAdd,

@@ -17,6 +17,7 @@
         },
         mounted() {
             category.typeClassAdd(4);
+            category.changeBgTitle('代码编程');
             this.$store.commit('showCur','30');
             this.$nextTick(() => {
                 switch (this.$route.query.cur) {

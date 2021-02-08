@@ -15,6 +15,7 @@
         },
         mounted() {
             category.typeClassAdd(2);
+            category.changeBgTitle('数学课程');
             this.$store.commit('showCur','10');
             this.$nextTick(() => {
                 switch (this.$route.query.cur) {

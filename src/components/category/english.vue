@@ -13,6 +13,7 @@
         },
         mounted() {
             category.typeClassAdd(3);
+            category.changeBgTitle('英语学习');
             this.$store.commit('showCur','20');
             this.$nextTick(() => {
                 switch (this.$route.query.cur) {

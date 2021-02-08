@@ -16,6 +16,7 @@
         },
         mounted() {
             category.typeClassAdd(1);
+            category.changeBgTitle('全部课程');
             this.$store.commit('showCur','00');
             this.$nextTick(() => {
                 this.$store.commit('activeCur','1');

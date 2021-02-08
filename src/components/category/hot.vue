@@ -20,6 +20,7 @@
         },
         mounted() {
             category.typeClassAdd(5);
+            category.changeBgTitle('热门课程');
             this.$store.commit('showCur','40');
             //category.curAdd(1)
             //this.$store.commit('activeCur','1');
