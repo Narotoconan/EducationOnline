@@ -14,7 +14,6 @@
         mounted() {
             category.typeClassAdd(3);
             this.$store.commit('showCur','20');
-            this.englishCur();
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(3);
