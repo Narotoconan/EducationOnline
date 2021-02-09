@@ -10,10 +10,8 @@ function typeClassRemove(index) {
     $(".categoryType dd:nth-of-type("+index+")").removeClass("typeActive");
 }
 function curAdd(index) {
-    $(".curList dd:nth-of-type("+index+")").addClass("curItemActive");
-}
-function curRemove() {
     $(".curList dd").removeClass("curItemActive");
+    $(".curList dd:nth-of-type("+index+")").addClass("curItemActive");
 }
 
 export default {
@@ -21,5 +19,4 @@ export default {
     typeClassAdd,
     typeClassRemove,
     curAdd,
-    curRemove
 }

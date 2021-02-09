@@ -34,22 +34,30 @@
                         {
                             curriculumName: 'HTML5',
                             curriculumPhoto: require('../../../assets/img/curriculum/code/html5.png'),
-                            description: '互联网的下一代语言标准'
+                            description: '互联网的下一代语言标准',
+                            path:'category/program',
+                            cur:'34'
                         },
                         {
                             curriculumName: 'Java',
                             curriculumPhoto: require('../../../assets/img/curriculum/code/java.png'),
-                            description: '稳坐市场占有率第一的宝座'
+                            description: '稳坐市场占有率第一的宝座',
+                            path:'category/program',
+                            cur:'31'
                         },
                         {
                             curriculumName: 'Python',
                             curriculumPhoto: require('../../../assets/img/curriculum/code/python.png'),
-                            description: '大量用户欢迎、用途广泛'
+                            description: '大量用户欢迎、用途广泛',
+                            path:'category/program',
+                            cur:'33'
                         },
                         {
                             curriculumName: 'C语言',
                             curriculumPhoto: require('../../../assets/img/curriculum/code/c.png'),
-                            description: '面向过程的的通用程序语言'
+                            description: '面向过程的的通用程序语言',
+                            path:'category/program',
+                            cur:'32'
                         }
                     ]
                 },
@@ -60,22 +68,30 @@
                         {
                             curriculumName: '高考数学',
                             curriculumPhoto: require('../../../assets/img/curriculum/math/gaokaoshu.png'),
-                            description: '普通高等学校招生全国数学考试'
+                            description: '普通高等学校招生全国数学考试',
+                            path:'category/math',
+                            cur:'11'
                         },
                         {
                             curriculumName: '高等数学',
                             curriculumPhoto: require('../../../assets/img/curriculum/math/gaoshu.png'),
-                            description: '研究生入学统考“数学”'
+                            description: '研究生入学统考“数学”',
+                            path:'category/math',
+                            cur:'12'
                         },
                         {
                             curriculumName: '线性代数',
                             curriculumPhoto: require('../../../assets/img/curriculum/math/xiandai.png'),
-                            description: '应用于自然科学和社会科学中'
+                            description: '应用于自然科学和社会科学中',
+                            path:'category/math',
+                            cur:'13'
                         },
                         {
                             curriculumName: '概率论',
                             curriculumPhoto: require('../../../assets/img/curriculum/math/gailv.png'),
-                            description: '研究随机现象规律的数学分支'
+                            description: '研究随机现象规律的数学分支',
+                            path:'category/math',
+                            cur:'14'
                         }
                     ]
                 },
@@ -86,22 +102,30 @@
                         {
                             curriculumName: '高考英语',
                             curriculumPhoto: require('../../../assets/img/curriculum/english/gaokaoying.png'),
-                            description: '普通高等学校招生全国英语考试'
+                            description: '普通高等学校招生全国英语考试',
+                            path:'category/english',
+                            cur:'21'
                         },
                         {
                             curriculumName: '考研英语',
                             curriculumPhoto: require('../../../assets/img/curriculum/english/kaoyanying.png'),
-                            description: '研究生入学统考“英语”'
+                            description: '研究生入学统考“英语”',
+                            path:'category/english',
+                            cur:'22'
                         },
                         {
                             curriculumName: '英语四级',
                             curriculumPhoto: require('../../../assets/img/curriculum/english/cet4.png'),
-                            description: '全国大学生英语四级考试'
+                            description: '全国大学生英语四级考试',
+                            path:'category/english',
+                            cur:'23'
                         },
                         {
                             curriculumName: '英语六级',
                             curriculumPhoto: require('../../../assets/img/curriculum/english/cet6.png'),
-                            description: '全国大学生英六级考试'
+                            description: '全国大学生英六级考试',
+                            path:'category/english',
+                            cur:'24'
                         }
                     ]
                 }

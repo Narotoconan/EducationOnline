@@ -29,7 +29,7 @@ const curriculumList = {
         theCode: '11'
       },
       {
-        name: '考研数学',
+        name: '高等数学',
         theCode: '12'
       },
       {
@@ -109,7 +109,6 @@ const curriculumList = {
 
     },
     activeCur(state,payload){
-      category.curRemove();
       category.curAdd(payload);
     }
   },
