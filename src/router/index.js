@@ -78,7 +78,11 @@ const routes = [
 
                 ]
             },
-        ]
+            {
+                path: '/video/:videoId',
+                component: () => import('../views/videoPage')
+            },
+]
     },
     {
         path: '/login',

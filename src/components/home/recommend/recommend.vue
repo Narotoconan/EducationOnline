@@ -4,7 +4,9 @@
             <h3 class="recommendTitle">推荐课程</h3>
             <div class="recommendList">
                 <div class="row row-cols-1 row-cols-md-3">
-                    <recommend-item/>
+                    <div @click="toVideo('10020')">
+                        <recommend-item/>
+                    </div>
                     <recommend-item/>
                     <recommend-item/>
                     <recommend-item/>
@@ -25,6 +27,13 @@
         name: "recommend",
         components:{
             recommendItem
+        },
+        methods:{
+            toVideo(videoId){
+                this.$router.push({
+                    path:`/video/${videoId}`,
+                })
+            }
         }
     }
 </script>
