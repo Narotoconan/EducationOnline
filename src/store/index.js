@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import category from "../assets/js/category";
+import category from "../assets/js/category"
+import CryptoJS from 'crypto-js'
 
 Vue.use(Vuex)
 
@@ -116,11 +117,15 @@ const curriculumList = {
 
 export default new Vuex.Store({
   state: {
-    toLogin:false
+    toLogin:false,
+    publicKey:null
+
   },
   mutations: {
+
   },
   actions: {
+
   },
   modules: {
     curriculumList
