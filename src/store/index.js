@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import category from "../assets/js/category"
-import CryptoJS from 'crypto-js'
 
 Vue.use(Vuex)
 

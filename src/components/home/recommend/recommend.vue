@@ -29,9 +29,9 @@
             recommendItem
         },
         methods:{
-            toVideo(videoId){
+            toVideo(curriculumId){
                 this.$router.push({
-                    path:`/video/${videoId}`,
+                    path:`/curriculum/${curriculumId}`,
                 })
             }
         }

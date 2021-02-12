@@ -53,7 +53,7 @@ const routes = [
             },
             {
                 path: '/curriculum',
-                component: () => import('../views/curriculum')
+                component: () => import('../views/curriculumDetail')
             },
             {
                 path: '/profile',
@@ -81,6 +81,10 @@ const routes = [
             {
                 path: '/video/:videoId',
                 component: () => import('../views/videoPage')
+            },
+            {
+                path: '/curriculum/:curriculumId',
+                component: () => import('../views/curriculumDetail')
             },
 ]
     },

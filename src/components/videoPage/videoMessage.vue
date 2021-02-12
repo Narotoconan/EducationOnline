@@ -31,9 +31,9 @@
                         <div class="tBorder w-75">
                             <img src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" alt="avatar">
                             <h3 class="mt-3 mb-3">William</h3>
-                            <p class="text-black-50">
+                            <small class="text-black-50">
                                 仁才培训中心语文名教师，有40余年高中语文教学经验，有10年高考阅卷体验。
-                            </p>
+                            </small>
                         </div>
                     </div>
                 </div>

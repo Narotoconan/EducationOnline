@@ -1,10 +1,12 @@
 <template>
-    
+    <div class="curList">
+        123
+    </div>
 </template>
 
 <script>
     export default {
-        name: "curriculum"
+        name: "curList"
     }
 </script>
 
