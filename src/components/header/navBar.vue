@@ -2,7 +2,9 @@
     <div id="navBar">
         <div class="container h-100 position-relative">
             <div class="navOne">
-                <web-logo />
+                <a href="/home">
+                    <web-logo />
+                </a>
                 <div class="d-inline-block">
                     <nav-list />
                 </div>
