@@ -4,6 +4,7 @@
             <el-input
                     placeholder="请输入内容"
                     suffix-icon="el-icon-search"
+                    @keydown.enter="toSearch()"
                     v-model="search">
             </el-input>
     </div>
@@ -15,6 +16,11 @@
         data(){
             return{
                 search:''
+            }
+        },
+        methods:{
+            toSearch(){
+
             }
         }
     }

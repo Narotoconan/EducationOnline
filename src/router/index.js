@@ -10,13 +10,13 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path:'',
-        redirect:'/index'
+        path: '',
+        redirect: '/index'
     },
     {
-      path:'/index',
-      component: () => import('../views/index'),
-        children:[
+        path: '/index',
+        component: () => import('../views/index'),
+        children: [
             {
                 path: '',
                 redirect: '/home'
@@ -28,7 +28,7 @@ const routes = [
             {
                 path: '/category',
                 component: () => import('../views/category'),
-                children:[
+                children: [
                     {
                         path: 'hot',
                         component: () => import('../components/category/hot')
@@ -58,22 +58,22 @@ const routes = [
             {
                 path: '/profile',
                 component: () => import('../views/profile'),
-                children:[
+                children: [
                     {
-                        path:'',
-                        redirect:'userMg'
+                        path: '',
+                        redirect: 'userMg'
                     },
                     {
                         path: 'userMg',
-                        component:()  => import('../components/profile/userMg/userMg')
+                        component: () => import('../components/profile/userMg/userMg')
                     },
                     {
                         path: 'browsed',
-                        component:()  => import('../components/profile/browsed/browsed')
+                        component: () => import('../components/profile/browsed/browsed')
                     },
                     {
                         path: 'favorites',
-                        component:()  => import('../components/profile/favorites/favorites')
+                        component: () => import('../components/profile/favorites/favorites')
                     },
 
                 ]
@@ -86,36 +86,40 @@ const routes = [
                 path: '/curriculum/:curriculumId',
                 component: () => import('../views/curriculumDetail')
             },
-]
+            {
+                path: '/search',
+                component: () => import('../views/searchPage')
+            },
+        ]
     },
     {
         path: '/login',
         component: () => import('../views/login'),
-        children:[
+        children: [
             {
-                path:'',
-                redirect:'toLogin'
+                path: '',
+                redirect: 'toLogin'
             },
             {
-                path:'toLogin',
+                path: 'toLogin',
                 component: () => import('../components/login/toLogin'),
                 children: [
                     {
-                        path:'',
-                        redirect:'user'
+                        path: '',
+                        redirect: 'user'
                     },
                     {
-                        path:'user',
+                        path: 'user',
                         component: () => import('../components/login/userLogin'),
                     },
                     {
-                        path:'admin',
+                        path: 'admin',
                         component: () => import('../components/login/adminLogin'),
                     },
                 ]
             },
             {
-                path:'toSign',
+                path: 'toSign',
                 component: () => import('../components/login/toSign'),
             },
         ]
@@ -131,7 +135,7 @@ const router = new VueRouter({
         if (saveTop) {
             return saveTop;
         } else {
-            return { x: 0, y: 0 }
+            return {x: 0, y: 0}
         }
     },
 })
