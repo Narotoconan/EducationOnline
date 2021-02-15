@@ -1,11 +1,10 @@
 <template>
     <div class="search mr-3">
-            <!--<input type="text" id="search" v-model="search">-->
             <el-input
                     placeholder="请输入内容"
-                    suffix-icon="el-icon-search"
-                    @keydown.enter="toSearch()"
+                    @keypress.enter.native="toSearchPage()"
                     v-model="search">
+                <i class="el-icon-search el-input__icon" slot="suffix" @click="toSearchPage()"></i>
             </el-input>
     </div>
 </template>
@@ -19,8 +18,16 @@
             }
         },
         methods:{
-            toSearch(){
-
+            toSearchPage(){
+                let searchWords=this.search.split(" ").join(""); //去除空格
+                if (searchWords.length){
+                    this.$router.push({
+                        path:'/search',
+                        query:{
+                            w:searchWords
+                        }
+                    })
+                }
             }
         }
     }

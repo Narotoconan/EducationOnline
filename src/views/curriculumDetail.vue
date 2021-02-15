@@ -23,6 +23,9 @@
             curAside,
             curList
         },
+        mounted() {
+
+        },
         methods:{
             toVideo(videoId){
                 this.$router.push({
