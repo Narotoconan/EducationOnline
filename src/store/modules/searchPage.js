@@ -15,6 +15,8 @@ export default {
                 userID:'2001002'
             }).then(res => {
                 context.commit('toSearchList',res)
+            }).catch(err => {
+                console.log(err);
             })
         }
     }

@@ -1,1 +1,52 @@
 @import "../position";
+@import "searchCard";
+@import "hotCard";
+
+.searchPage{
+  background-color: #eff3f5;
+  cursor: default;
+  .searchContent{
+    display: flex;
+    >div{
+
+    }
+    .left{
+      flex: 15;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 15px;
+      .title{
+        span{
+          font-size: 1.25rem;
+          font-weight: 600;
+          letter-spacing: 0.15rem;
+        }
+        small{
+          font-size: 1rem;
+        }
+      }
+    }
+    .right{
+      flex: 5;
+      margin-left: 15px;
+      .hotCur{
+        border-radius: 15px;
+        background-color: #fff;
+        padding: 2rem 1rem;
+        small:hover{
+          color: #ffb259 !important;
+        }
+      }
+    }
+  }
+  .el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #ffb259;
+    color: #FFF;
+  }
+  .el-pagination.is-background .el-pager li:not(.disabled,.active):hover {
+    color: #ffb259;
+  }
+}
+.searchList{
+
+}

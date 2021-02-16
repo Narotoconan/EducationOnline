@@ -6,7 +6,9 @@
             <div class="content">课程名称</div>
         </div>
         <category-nav></category-nav>
-        <router-view></router-view>
+        <div class="container">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -22,4 +24,5 @@
 
 <style lang="less">
     @import "../assets/css/category/category";
+    @import "../assets/css/home/recommend/recommend";
 </style>

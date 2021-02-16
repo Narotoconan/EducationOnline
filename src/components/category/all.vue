@@ -1,14 +1,31 @@
 <template>
     <div class="all">
-        <h1>all</h1>
+        <div class="row row-cols-1 row-cols-md-3">
+            <div v-for="item in 9">
+                <recommend-item/>
+            </div>
+        </div>
+        <div class="mt-5" style="text-align: center">
+            <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :page-size="4"
+                    :total="16"
+                    @current-change="handleCurrentChange">
+            </el-pagination>
+        </div>
     </div>
 </template>
 
 <script>
     import category from "../../assets/js/category";
+    import recommendItem from "../home/recommend/recommendItem";
 
     export default {
         name: "all",
+        components:{
+          recommendItem
+        },
         data(){
           return {
 
@@ -28,7 +45,9 @@
         },
 
         methods:{
-
+            handleCurrentChange(val) {
+                console.log(val);
+            },
         }
     }
 </script>

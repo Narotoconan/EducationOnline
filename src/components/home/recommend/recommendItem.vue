@@ -1,5 +1,5 @@
 <template>
-    <div class="recommendItem col mb-4">
+    <div class="recommendItem col mb-4" @click="toCurriculum('10020')">
         <div class="card">
             <img src="../../../assets/img/test/test3.webp" class="card-img-top" alt="...">
             <div class="card-body">
@@ -23,6 +23,13 @@
         data(){
             return{
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            }
+        },
+        methods:{
+            toCurriculum(curriculumId){
+                this.$router.push({
+                    path:`/curriculum/${curriculumId}`,
+                })
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    
+    <h1>math</h1>
 </template>
 
 <script>

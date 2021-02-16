@@ -1,9 +1,6 @@
 <template>
     <div class="hot">
-        <div class="container">
-            <h1>hot</h1>
-        </div>
-
+        <h1>hot</h1>
     </div>
 </template>
 
