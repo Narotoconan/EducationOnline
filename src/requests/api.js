@@ -1,3 +1,3 @@
 import {get, post} from './http'
 
-export const search = w => get('getPerson.php', w)
+export const search = searchWords => get('getPerson.php', searchWords)

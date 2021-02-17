@@ -1,7 +1,9 @@
 <template>
     <div class="login ml-5">
-        <div class="toLogin" v-if="!isLogin">
-            <button type="button" class="btn btn-outline-warning" @click="toLogin('/login')">登录 / 注册</button>
+        <div class="toLogin" v-if="$store.state.toLogin">
+            <a href="/login">
+                <button type="button" class="btn btn-outline-warning">登录 / 注册</button>
+            </a>
         </div>
         <div class="userMessage" v-else>
             <el-dropdown>
@@ -37,7 +39,6 @@
         name: "login",
         data() {
             return {
-                isLogin: true,
                 circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
             }
         },

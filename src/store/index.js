@@ -9,13 +9,10 @@ import searchPage from './modules/searchPage'
 
 Vue.use(Vuex)
 
-const state = {
-  toLogin:false,
-}
-
 export default new Vuex.Store({
-  namespaced:true,
-  state,
+  state:{
+    toLogin:true,
+  },
   mutations,
   actions,
   modules: {

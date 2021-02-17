@@ -6,7 +6,7 @@
             <div class="content">课程名称</div>
         </div>
         <category-nav></category-nav>
-        <div class="container">
+        <div class="container pb-5" style="min-height: 38rem">
             <router-view></router-view>
         </div>
     </div>

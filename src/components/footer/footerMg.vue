@@ -1,6 +1,6 @@
 <template>
     <div class="footerMg">
-        <div class="container p-5">
+        <div class="container pt-5 pb-3">
             <img src="../../assets/img/header/logo.png" alt="logo">
             <div class="h5 mt-3 text-black-50">
                 By : William.Will

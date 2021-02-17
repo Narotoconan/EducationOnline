@@ -30,9 +30,6 @@
                     height:$(window).height()
                 });
             },
-            toRoute(path){
-                this.$router.push(path);
-            },
         }
     }
 </script>
