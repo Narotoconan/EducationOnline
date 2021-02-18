@@ -11,7 +11,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{
-    toLogin:true,
+    toLogin:false,
   },
   mutations,
   actions,
