@@ -23,10 +23,10 @@
                     {number: 5},
                 ],
                 pointC: [
-                    "#fcb1b1",
-                    "#96f7d2",
-                    "#59d4e8",
-                    "#ffcef3",
+                    "#1bc5bd",
+                    "#f64e60",
+                    "#8950fc",
+                    "#ffa800",
                     ""
                 ]
             }
@@ -47,7 +47,7 @@
                 for (let i = 1; i <= len; i++) {
                     let index = i % 4;
                     $(".browsed>div:nth-of-type("+i+") .browsedPoint").css({
-                        "background-color": vm.pointC[index]
+                        "border-color": vm.pointC[index]
                     });
                 }
             },
