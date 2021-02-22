@@ -1,32 +1,35 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <el-container>
+            <el-aside width="250px">
+                <aside-list></aside-list>
+            </el-aside>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
+        </el-container>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+    import AsideList from "./components/Aside/AsideList";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    export default {
+        name: 'app',
+        components: {
+            AsideList
+        },
     }
-  }
-}
+</script>
+
+<style lang="less">
+    .el-main {
+        background-color: #f3f6f9;
+    }
+    .itemCard{
+        background-color: #fff;
+        box-shadow: 0 15px 30px rgba(174, 174, 174, 0.1);
+        border-radius: 15px;
+        padding: 1rem;
+    }
 </style>
