@@ -23,6 +23,10 @@ const routes = [
         component: () => import('../views/AddCurriculum'),
     },
     {
+        path: '/curriculumList',
+        component: () => import('../views/CurriculumList'),
+    },
+    {
         path: '/addVideo',
         component: () => import('../views/AddVideo'),
     },

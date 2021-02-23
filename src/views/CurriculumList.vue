@@ -1,0 +1,126 @@
+<template>
+    <div class="addVideo">
+        <div class="itemCard">
+            <el-table
+                    :data="tableData"
+                    border
+                    highlight-current-row
+                    stripe
+                    style="width: 100%;">
+                <el-table-column
+                        fixed
+                        prop="courseId"
+                        align="center"
+                        label="课程ID"
+                        width="150">
+                </el-table-column>
+                <el-table-column
+                        prop="cover"
+                        label="课程封面"
+                        align="center"
+                        width="170">
+                    <template slot-scope="scope">
+                        <img :src="$store.state.targetURL+scope.row.cover" alt=""
+                             style="width: 100%;border-radius: 10px;">
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="title"
+                        label="课程名称"
+                        show-overflow-tooltip
+                        align="center"
+                        width="550">
+                </el-table-column>
+                <el-table-column
+                        prop="categoryParent"
+                        align="center"
+                        label="课程分类">
+                    <template slot-scope="scope">
+                        <el-tag type="success">{{ scope.row.categoryParent }}</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="categoryChildren"
+                        align="center"
+                        label="课程类型">
+                    <template slot-scope="scope">
+                        <el-tag type="warning">{{ scope.row.categoryChildren }}</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="teacherName"
+                        align="center"
+                        label="课程老师">
+                </el-table-column>
+                <el-table-column
+                        fixed="right"
+                        label="操作"
+                        align="center"
+                        width="200">
+                    <template slot-scope="scope">
+                        <el-button @click="addVideo(scope.row)" type="primary" size="middle" round plain>添加视频</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="mt-5" style="text-align: center">
+                <el-pagination
+                        background
+                        layout="prev, pager, next"
+                        @current-change="toGetCur"
+                        :page-size="size"
+                        :total="total">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import {getCurriculum} from "../requests/api";
+
+    export default {
+        name: "CurriculumList",
+        data() {
+            return {
+                tableData: [],
+                total: 1,
+                size: 7
+            }
+        },
+        created() {
+            this.toGetCur(1)
+        },
+        methods: {
+            addVideo(row) {
+                this.$router.push({
+                    path:'/addVideo',
+                    query:{
+                        courseId:row.courseId
+                    }
+                })
+            },
+            toGetCur(val) {
+                getCurriculum({
+                    type: 0,
+                    c: val,
+                    s: this.size
+                }).then(res => {
+                    if (res.resultCode !== 1210) return
+                    if (!res.data.courseDetails.length) {
+                        this.$message.warning('内容为空')
+                        return
+                    }
+                    this.tableData = res.data.courseDetails;
+                    this.total = res.data.total
+                }).catch(err => {
+                    this.$message.error('请求失败')
+                    console.log(err)
+                })
+            }
+        }
+    }
+</script>
+
+<style>
+
+</style>

@@ -6,8 +6,15 @@ export const addAvatar = (teacherId, teacherAvatar) => avatarPost('teacher/avata
 
 export const addCur = curMg => post('course/', curMg)
 
-export const addCover = (curId, curCover) => avatarPost('course/avatar/upload/' + curId, curCover)
+export const addCover = (curId, curCover) => avatarPost('course/cover/upload/' + curId, curCover)
 
 export const getTeacher = categoryId => get('teacher/', categoryId)
 
 export const getCurriculum = message => get('course/', message)
+
+export const getCurriculumDetails = curriculumId => get('course/', curriculumId)
+
+export const getVideoList = curriculumId =>get('video/',curriculumId)
+
+export const addVideo = videoMg => post('video/',videoMg)
+

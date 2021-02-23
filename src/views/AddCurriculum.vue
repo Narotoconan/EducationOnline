@@ -144,8 +144,8 @@
                 addCur(
                     this.curriculum
                 ).then(res => {
-                    if (res.resultCode === 1400){
-                        this.upCover(res.data.curId)
+                    if (res.resultCode === 1230){
+                        this.upCover(res.data.courseId)
                     }
                 }).catch(err => {
                     this.$message.error('添加课程失败')
@@ -162,7 +162,12 @@
                     curId,
                     formData
                 ).then(res => {
-
+                    this.$message({
+                        message: '添加课程成功',
+                        type: 'success'
+                    })
+                    Object.assign(this.$data, this.$options.data())  //重置表单
+                    this.$refs.curriculumCover.destroy()
                 }).catch(err =>{
                     this.$message.error('添加封面失败')
                     console.log('封面失败\n'+ err)

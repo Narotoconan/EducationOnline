@@ -17,10 +17,10 @@
                         <span slot="name">添加课程</span>
                     </aide-list-item>
                 </li>
-                <li @click="toRoute('/addVideo')">
-                    <aide-list-item path="addVideo">
+                <li @click="toRoute('/curriculumList')">
+                    <aide-list-item path="curriculumList">
                         <i class="bi bi-play-btn" slot="icon"></i>
-                        <span slot="name">添加视频</span>
+                        <span slot="name">课程列表</span>
                     </aide-list-item>
                 </li>
             </ul>
