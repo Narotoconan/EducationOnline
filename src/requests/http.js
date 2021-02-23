@@ -1,7 +1,7 @@
 import axios from "axios"
 import qs from 'qs'
 
-axios.defaults.baseURL = 'api'
+axios.defaults.baseURL='api'
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
 //axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";

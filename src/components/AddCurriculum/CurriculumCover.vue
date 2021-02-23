@@ -57,10 +57,10 @@
 
                 $("#toUpload").on("click", function () {
                     const cas = vm.cropper.getCroppedCanvas({
-                        width: 216,
-                        height: 120
+                        width: 216*3,
+                        height: 120*3
                     });
-                    cas.toBlob(function (e) {
+                        cas.toBlob(function (e) {
                         vm.$emit('toCoverBlob', e);  //生成Blob的图片格式
                     });
                     const base64url = cas.toDataURL('image/jpeg');
@@ -136,6 +136,10 @@
     .showCover{
         height: 120px;
         width: 216px;
-        border: 1px solid #d3d3d3
+        border: 1px solid #d3d3d3;
+        img{
+            max-height: 100%;
+            max-width: 100%;
+        }
     }
 </style>

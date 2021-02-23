@@ -154,6 +154,7 @@
             },
             getCoverBlob(coverBlob){
                 this.coverBlob = coverBlob
+                console.log(coverBlob);
             },
             upCover(curId){
                 const formData = new FormData()
@@ -175,6 +176,8 @@
             },
             getTeacher(categoryId){
                 if (categoryId ==null) return
+                this.teachers=[]
+                this.curriculum.teacherId =''
                 getTeacher({
                         categoryId:categoryId
                 }

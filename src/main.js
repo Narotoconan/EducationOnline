@@ -7,10 +7,12 @@ import jquery from 'jquery'
 import Popper from 'popper.js'
 import bootstrap from  'bootstrap'
 import element from 'element-ui'
+import axios from "http";
 
 Vue.config.productionTip = false
 
 Vue.use(element);
+Vue.use(axios);
 
 new Vue({
   router,
