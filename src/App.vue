@@ -15,6 +15,9 @@
 </script>
 
 <style lang="less">
+    li{
+        list-style-type: none !important;
+    }
     /* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
     ::-webkit-scrollbar {
         width: 7px;
