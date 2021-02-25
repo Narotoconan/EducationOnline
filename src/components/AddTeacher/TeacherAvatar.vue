@@ -2,6 +2,7 @@
     <div>
         <div id="toAvatar" @click="dialogUploadAvVisible= true">
             <el-tag effect="dark" type="warning">添加头像</el-tag>
+            <i class="bi bi-check-circle-fill" style="font-size: 1rem;margin-left: 1rem;color: #27d332" v-show="isOk"></i>
         </div>
         <div class="show mt-3">
             <img src="" alt="">
@@ -41,7 +42,8 @@
             return {
                 dialogUploadAvVisible: false,
                 showImg: null,
-                cropper:null
+                cropper: null,
+                isOk:false
             }
         },
         methods: {
@@ -57,8 +59,8 @@
 
                 $("#toUpload").on("click", function () {
                     const cas = vm.cropper.getCroppedCanvas({
-                        width: 100,
-                        height: 100
+                        width: 100 * 2,
+                        height: 100 * 2
                     });
                     cas.toBlob(function (e) {
                         vm.$emit('toAvatarBlob', e);  //生成Blob的图片格式
@@ -68,10 +70,7 @@
                         src: base64url
                     });
                     vm.dialogUploadAvVisible = false;
-                    vm.$message({
-                        message: '添加成功',
-                        type: 'success'
-                    });
+                    vm.isOk=true
                 });
                 const inputFile = document.getElementById("inputFile");
 
@@ -88,11 +87,12 @@
 
                 }, false);
             },
-            destroy(){
+            destroy() {
                 this.cropper.destroy()
                 $(".show img").attr({
                     src: null
                 });
+                this.isOk=false
             }
         }
     }
@@ -137,8 +137,11 @@
         height: 100px;
         width: 100px;
         border: 1px solid #d3d3d3;
-        img{
+
+        img {
             border: none !important;
+            max-height: 100%;
+            max-width: 100%;
         }
     }
 </style>

@@ -50,7 +50,6 @@
                     <el-table
                             :data="curVideoList"
                             stripe
-                            :default-sort = "{prop: 'lesson', order: 'descending'}"
                             style="width: 100%">
                         <el-table-column
                                 prop="lesson"
@@ -80,7 +79,7 @@
 
 <script>
     import {getCurriculumDetails,addVideo,getVideoList} from "../requests/api";
-
+    import { Loading } from 'element-ui';
     export default {
         name: "AddVideo",
         data(){
@@ -106,15 +105,14 @@
             getCurMg(){
                 let courseId =this.$route.query.courseId
                 getCurriculumDetails({
-                    type:4,
                     cid:courseId
                 }).then(res => {
                     if (res.resultCode !== 1210) {
                         this.$message.warning(res.resultCode+'---'+res.message)
                         return
                     }
-                    this.curriculum = res.data.courseDetails
-                    this.videoMg.courseId = res.data.courseDetails.courseId
+                    this.curriculum = res.data.courseDetails[0]
+                    this.videoMg.courseId = res.data.courseDetails[0].courseId
                     this.getVideoList()
                 }).catch(err => {
                     this.$message.error('课程信息请求失败')
@@ -122,11 +120,20 @@
                 })
             },
             getVideoList(){
+                let loadingInstance=Loading.service({
+                    target:document.querySelector('.el-table__body-wrapper')
+                })
                 getVideoList({
-                    courseId:this.videoMg.courseId
+                    courseId:this.videoMg.courseId,
+                    asc:false
                 }).then(res => {
+                    loadingInstance.close()
                     if (res.resultCode !== 1510) {
-                        this.$message.warning(res.resultCode+'---'+res.message)
+                        this.$message.warning(res.resultCode+'-'+res.message)
+                        return
+                    }
+                    if (!res.data.total) {
+                        this.$message.warning('无视频')
                         return
                     }
                     this.curVideoList=res.data.videos

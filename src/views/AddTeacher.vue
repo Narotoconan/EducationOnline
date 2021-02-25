@@ -55,6 +55,7 @@
                 ).then(res => {
                     if (res.resultCode === 1400) {
                         this.upAvatar(res.data.teacherId)
+                        console.log(res);
                     }
                     console.log(res)
                 }).catch(err => {

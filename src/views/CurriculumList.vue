@@ -6,6 +6,7 @@
                     border
                     highlight-current-row
                     stripe
+                    id="xxx"
                     style="width: 100%;">
                 <el-table-column
                         fixed
@@ -77,6 +78,7 @@
 
 <script>
     import {getCurriculum} from "../requests/api";
+    import { Loading } from 'element-ui';
 
     export default {
         name: "CurriculumList",
@@ -87,7 +89,7 @@
                 size: 7
             }
         },
-        created() {
+        mounted() {
             this.toGetCur(1)
         },
         methods: {
@@ -95,25 +97,32 @@
                 this.$router.push({
                     path:'/addVideo',
                     query:{
-                        courseId:row.courseId
+                        courseId: parseInt(row.courseId)
                     }
                 })
             },
             toGetCur(val) {
+                let loadingInstance=Loading.service({
+                    target:document.querySelector('.el-table__body-wrapper')
+                })
                 getCurriculum({
-                    type: 0,
                     c: val,
-                    s: this.size
+                    s: this.size,
+                    asc:false
                 }).then(res => {
-                    if (res.resultCode !== 1210) return
-                    if (!res.data.courseDetails.length) {
-                        this.$message.warning('内容为空')
+                    loadingInstance.close();// 以服务的方式调用的 Loading 需要异步关闭
+                    if (res.resultCode !== 1210) {
+                        this.$message.warning(res.resultCode+'-'+res.message)
+                        return
+                    }
+                    if (!res.data.total) {
+                        this.$message.warning(res.message+'_无数据')
                         return
                     }
                     this.tableData = res.data.courseDetails;
                     this.total = res.data.total
                 }).catch(err => {
-                    this.$message.error('请求失败')
+                    //this.$message.error('请求失败')
                     console.log(err)
                 })
             }
