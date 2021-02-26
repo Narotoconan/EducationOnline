@@ -50,8 +50,9 @@
             toCropper() {
                 const userAvatar = $("#userAvatar")[0];
                 this.cropper = new Cropper(userAvatar, {
-                    aspectRatio: 2 / 2,
-                    viewMode: 2,
+                    aspectRatio: 3 / 3,
+                    autoCropArea:1.5,
+                    viewMode: 0,
                     preview: '.preview'
                 });
 

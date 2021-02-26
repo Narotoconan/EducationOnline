@@ -71,6 +71,7 @@
                         :page-size="size"
                         :total="total">
                 </el-pagination>
+                <el-button type="success" round size="mini" style="margin-top: 1rem" @click="toGetCur(1)">刷新列表</el-button>
             </div>
         </div>
     </div>
@@ -122,7 +123,7 @@
                     this.tableData = res.data.courseDetails;
                     this.total = res.data.total
                 }).catch(err => {
-                    //this.$message.error('请求失败')
+                    this.$message.error('请求失败')
                     console.log(err)
                 })
             }

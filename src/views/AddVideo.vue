@@ -27,14 +27,20 @@
                         <i class="el-icon-upload el-icon--right mr-1"></i>
                         <span>添加视频</span>
                     </el-button>
+                    <el-button type="success" round size="mini"
+                               style="display: block;margin: 1.5rem auto"
+                               @click="getVideoList">刷新列表</el-button>
 
                     <el-dialog title="视频信息" :visible.sync="dialogVideoVisible" width="30%" style="text-align: center">
-                        <el-form :model="videoMg" style="width: 90%">
+                        <el-form :model="videoMg" style="width: 90%;margin-top: 2rem">
                             <el-form-item label="视频标题" :label-width="formLabelWidth">
                                 <el-input v-model="videoMg.title" autocomplete="off"></el-input>
                             </el-form-item>
                             <el-form-item label="BV号" :label-width="formLabelWidth">
                                 <el-input v-model="videoMg.bv" autocomplete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="分P" :label-width="formLabelWidth">
+                                <el-input v-model="videoMg.page" autocomplete="off"></el-input>
                             </el-form-item>
                             <el-form-item label="课程内容" :label-width="formLabelWidth">
                                 <el-input type="textarea" v-model="videoMg.content"></el-input>
@@ -69,6 +75,9 @@
                                 prop="bv"
                                 align="center"
                                 label="B站视频">
+                            <template slot-scope="scope">
+                                {{ scope.row.bv+'---'+scope.row.lesson }}
+                            </template>
                         </el-table-column>
                     </el-table>
                 </div>
@@ -91,7 +100,8 @@
                     courseId:this.$route.query.courseId,
                     title:'',
                     bv:'',
-                    content:''
+                    content:'',
+                    page:'1'
                 },
                 curVideoList:[],
                 dialogVideoVisible:false,
@@ -128,11 +138,12 @@
                     asc:false
                 }).then(res => {
                     loadingInstance.close()
+                    console.log(res);
                     if (res.resultCode !== 1510) {
                         this.$message.warning(res.resultCode+'-'+res.message)
                         return
                     }
-                    if (!res.data.total) {
+                    if (!res.data.videos.length) {
                         this.$message.warning('无视频')
                         return
                     }
