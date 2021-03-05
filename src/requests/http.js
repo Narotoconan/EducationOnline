@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
 //axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
-axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyMtRRKi5NUrJSCgjydHZVAvKS8wtSi5WsopVCg12DgAKOLr6efkqxOkqpFQVA9WaGJuZmBuaGFjpKmYklYAFjC0szoEAtAAAA__8.oROBJfEmm9KbeRYRB0RVlB2jaWzGUpSRkagYXJ2PdC8';
+axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyMtRRKi5NUrJSCgjydHZVAvKS8wtSi5WsopVCg12DgAKOLr6efkqxOkqpFQVA9WaGpuaWphZmBjpKmYklYAETS2NDoEAtAAAA__8.P-CQSE1UwsEtDLhKZ61dATOU4qdeD2K26SRWhRcQhss';
 
 /*axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么

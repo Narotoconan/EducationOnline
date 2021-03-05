@@ -10,11 +10,11 @@ export const addCover = (curId, curCover) => avatarPost('course/cover/upload/' +
 
 export const getTeacher = categoryId => get('teacher/', categoryId)
 
-export const getCurriculum = message => get('course/', message)
+export const getCurriculum = message => get('course/query/', message)
 
-export const getCurriculumDetails = curriculumId => get('course/', curriculumId)
+export const getCurriculumDetails = curriculumId => get('course/query/', curriculumId)
 
-export const getVideoList = curriculumId =>get('video/',curriculumId)
+export const getVideoList = curriculumId =>get('video/query/',curriculumId)
 
-export const addVideo = videoMg => post('video/',videoMg)
+export const addVideo = videoMg => post('video/add/',videoMg)
 
