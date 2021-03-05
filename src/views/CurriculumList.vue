@@ -21,7 +21,7 @@
                         align="center"
                         width="170">
                     <template slot-scope="scope">
-                        <img :src="$store.state.targetURL+scope.row.cover" alt=""
+                        <img :src="$store.state.targetURL+scope.row.img" alt=""
                              style="width: 100%;border-radius: 10px;">
                     </template>
                 </el-table-column>

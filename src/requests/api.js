@@ -4,7 +4,7 @@ export const addTeacher = teacherMg => post('teacher/', teacherMg)
 
 export const addAvatar = (teacherId, teacherAvatar) => avatarPost('teacher/avatar/upload/' + teacherId, teacherAvatar)
 
-export const addCur = curMg => post('course/', curMg)
+export const addCur = curMg => post('course/add/', curMg)
 
 export const addCover = (curId, curCover) => avatarPost('course/cover/upload/' + curId, curCover)
 

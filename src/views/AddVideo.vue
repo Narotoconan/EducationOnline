@@ -5,7 +5,7 @@
                 <div class="card mb-3" style="width: 100%">
                     <div class="row no-gutters" style="height: 10rem">
                         <div class="col-md-3 mr-3 h-100">
-                            <img :src="$store.state.targetURL+curriculum.cover" alt="...">
+                            <img :src="$store.state.targetURL+curriculum.img" alt="...">
                         </div>
                         <div class="col-md-7 h-100 ">
                             <div class="card-body ml-4">
