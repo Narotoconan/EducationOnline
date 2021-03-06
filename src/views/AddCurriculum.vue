@@ -182,6 +182,14 @@
                         categoryId:categoryId
                 }
                 ).then(res => {
+                    if (res.resultCode!==1410){
+                        this.$message.warning(res.resultCode+" , "+res.message)
+                        return;
+                    }
+                    if (res.data.teachers.length === 0){
+                        this.$message.warning('无老师')
+                        return;
+                    }
                     this.teachers= res.data.teachers;
                     console.log(res);
                 }).catch(err => {

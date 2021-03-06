@@ -59,7 +59,8 @@
                         align="center"
                         width="200">
                     <template slot-scope="scope">
-                        <el-button @click="addVideo(scope.row)" type="primary" size="middle" round plain>添加视频</el-button>
+                        <el-button @click="changeCur(scope.row)" type="info" size="small" round plain>修改视频</el-button>
+                        <el-button @click="addVideo(scope.row)" type="primary" size="small" round plain>添加视频</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -78,7 +79,7 @@
 </template>
 
 <script>
-    import {getCurriculum} from "../requests/api";
+    import {getCurriculum,getTeacher} from "../requests/api";
     import { Loading } from 'element-ui';
 
     export default {
@@ -97,6 +98,14 @@
             addVideo(row) {
                 this.$router.push({
                     path:'/addVideo',
+                    query:{
+                        courseId: parseInt(row.courseId)
+                    }
+                })
+            },
+            changeCur(row) {
+                this.$router.push({
+                    path:'/changeCurriculum',
                     query:{
                         courseId: parseInt(row.courseId)
                     }
@@ -126,7 +135,7 @@
                     this.$message.error('请求失败')
                     console.log(err)
                 })
-            }
+            },
         }
     }
 </script>

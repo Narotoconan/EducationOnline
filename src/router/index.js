@@ -30,6 +30,10 @@ const routes = [
         path: '/addVideo',
         component: () => import('../views/AddVideo'),
     },
+    {
+        path: '/changeCurriculum',
+        component: () => import('../views/ChangeCurriculum'),
+    },
 ]
 
 const router = new VueRouter({
