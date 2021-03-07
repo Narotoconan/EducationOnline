@@ -57,10 +57,11 @@
                         fixed="right"
                         label="操作"
                         align="center"
-                        width="200">
+                        width="300">
                     <template slot-scope="scope">
                         <el-button @click="changeCur(scope.row)" type="info" size="small" round plain>修改视频</el-button>
                         <el-button @click="addVideo(scope.row)" type="primary" size="small" round plain>添加视频</el-button>
+                        <el-button @click="deleteCur(scope.row)" type="danger" size="small" round plain>删除视频</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -79,7 +80,7 @@
 </template>
 
 <script>
-    import {getCurriculum,getTeacher} from "../requests/api";
+    import {getCurriculum,deleteCur} from "../requests/api";
     import { Loading } from 'element-ui';
 
     export default {
@@ -139,6 +140,21 @@
                     console.log(err)
                 })
             },
+            deleteCur(row){
+                deleteCur(
+                    [row.courseId]
+                ).then(res => {
+                    if (res.resultCode !== 1240) {
+                        this.$message.warning(res.resultCode+'-'+res.message)
+                        return
+                    }
+                    this.$message.success('删除成功')
+                    this.toGetCur(this.page)
+                }).catch(err => {
+                    this.$message.error('删除失败')
+                    console.log(err);
+                })
+            }
         }
     }
 </script>

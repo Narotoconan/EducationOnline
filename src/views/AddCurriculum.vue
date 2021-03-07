@@ -145,7 +145,8 @@
                     this.curriculum
                 ).then(res => {
                     if (res.resultCode === 1230){
-                        this.upCover(res.data.courseId)
+                        this.upCover(res.data.course.courseId);
+                        console.log(res);
                     }
                 }).catch(err => {
                     this.$message.error('添加课程失败')

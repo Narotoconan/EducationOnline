@@ -20,3 +20,5 @@ export const addVideo = videoMg => post('video/add/',videoMg)
 
 export const changeCurriculum = curriculumMg => post('course/alter/',curriculumMg)
 
+export const deleteCur = curriculumId => post('course/delete/',curriculumId)
+
