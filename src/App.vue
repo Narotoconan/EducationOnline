@@ -5,7 +5,9 @@
                 <aside-list></aside-list>
             </el-aside>
             <el-main>
-                <router-view></router-view>
+                <keep-alive include="CurriculumList">
+                    <router-view></router-view>
+                </keep-alive>
             </el-main>
         </el-container>
     </div>

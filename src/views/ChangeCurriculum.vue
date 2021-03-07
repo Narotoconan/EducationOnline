@@ -2,10 +2,14 @@
     <div class="changeCurriculum">
         <div class="itemCard">
             <div class="container-xl">
-                <el-form label-position="right" :rules="rules" ref="ruleForm" status-icon label-width="80px" :model="curriculumMessage">
+                <div class="pb-4">
+                    <el-page-header content="课程信息修改" @back="$router.back()"></el-page-header>
+                </div>
+                <el-form label-position="right" :rules="rules" ref="ruleForm" status-icon label-width="80px"
+                         :model="curriculumMessage">
                     <el-form-item label="课程封面">
                         <img :src="$store.state.targetURL+curriculumMessage.img" alt=""
-                        style="height: 120px;border-radius: 15px">
+                             style="height: 120px;border-radius: 15px">
                     </el-form-item>
                     <el-form-item label="课程ID">
                         <el-input :value="curriculumMessage.courseId" disabled></el-input>
@@ -26,11 +30,11 @@
 </template>
 
 <script>
-    import {getCurriculumDetails} from "../requests/api";
+    import {getCurriculumDetails, changeCurriculum} from "../requests/api";
 
     export default {
         name: "ChangeCurriculum",
-        data(){
+        data() {
             const checkTitle = (rule, value, callback) => {
                 if (!value) {
                     return callback(new Error('名称不能为空'));
@@ -43,52 +47,97 @@
                 }
                 callback();
             }
-          return {
-              curriculumMessage:{
-                  title:'',
-                  description:''
-              },
-              rules:{
-                  title: [
-                      { validator:checkTitle , trigger: 'blur' }
-                  ],
-                  description: [
-                      { validator:checkDescription, trigger: 'blur' }
-                  ]
-              }
-          }
+            return {
+                curriculumMessage: {},
+                originMessage: {
+                    title:'',
+                    description:''
+                },
+                toUploadMessage: {
+                    courseId:this.$route.query.courseId
+                },
+                rules: {
+                    title: [
+                        {validator: checkTitle, trigger: 'blur'}
+                    ],
+                    description: [
+                        {validator: checkDescription, trigger: 'blur'}
+                    ]
+                }
+            }
         },
         created() {
-            let courseId =this.$route.query.courseId
-            getCurriculumDetails({
-                cid:courseId
-            }).then(res => {
-                if (res.resultCode !== 1210) {
-                    this.$message.warning(res.resultCode+'-'+res.message)
-                    return
-                }
-                this.curriculumMessage = res.data.courseDetails[0];
-            }).catch(err => {
-                this.$message.error('请求失败')
-                console.log(err);
-            })
+            this.toGetMg()
         },
-        methods:{
+        watch: {
+            'curriculumMessage.description': {
+                handler: function (val){
+                    if (val !== this.originMessage.description) {
+                        this.toUploadMessage.description = val
+                    } else {
+                        this.$delete(this.toUploadMessage, 'description')
+                    }
+                }
+            },
+            'curriculumMessage.title': {
+                handler: function(val) {
+                    if (val !== this.originMessage.title) {
+                        this.toUploadMessage.title = val
+                    } else {
+                        this.$delete(this.toUploadMessage, 'title')
+                    }
+                }
+            }
+        },
+        methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (!valid) {
                         this.$message.error('填写格式有误')
                         return false
                     }
-                    this.$message.success('asd')
+                    this.toChange()
                 });
             },
+            toGetMg() {
+                let courseId = this.$route.query.courseId
+                getCurriculumDetails({
+                    cid: courseId
+                }).then(res => {
+                    if (res.resultCode !== 1210) {
+                        this.$message.warning(res.resultCode + '-' + res.message)
+                        return
+                    }
+                    this.curriculumMessage = res.data.courses[0];
+                    this.originMessage.title = res.data.courses[0].title;
+                    this.originMessage.description = res.data.courses[0].description;
+                }).catch(err => {
+                    this.$message.error('请求失败')
+                    console.log(err);
+                })
+            },
+            toChange() {
+                let list = this.toUploadMessage
+                changeCurriculum(
+                    list
+                ).then(res => {
+                    if (res.resultCode !== 1250) {
+                        this.$message.warning(res.resultCode + '-' + res.message)
+                        return
+                    }
+                    this.$message.success('修改成功')
+                    this.toGetMg()
+                }).catch(err => {
+                    this.$message.error('修改失败')
+                    console.log(err);
+                })
+            }
         }
     }
 </script>
 
 <style lang="less">
-.el-textarea__inner{
-    height: 8rem;
-}
+    .el-textarea__inner {
+        height: 8rem;
+    }
 </style>

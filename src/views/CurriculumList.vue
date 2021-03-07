@@ -72,7 +72,7 @@
                         :page-size="size"
                         :total="total">
                 </el-pagination>
-                <el-button type="success" round size="mini" style="margin-top: 1rem" @click="toGetCur(1)">刷新列表</el-button>
+                <el-button type="success" round size="mini" style="margin-top: 1rem" @click="toGetCur(page)">刷新列表</el-button>
             </div>
         </div>
     </div>
@@ -88,7 +88,8 @@
             return {
                 tableData: [],
                 total: 1,
-                size: 7
+                size: 7,
+                page:null
             }
         },
         mounted() {
@@ -107,11 +108,12 @@
                 this.$router.push({
                     path:'/changeCurriculum',
                     query:{
-                        courseId: parseInt(row.courseId)
+                        courseId: parseInt(row.courseId),
                     }
                 })
             },
             toGetCur(val) {
+                this.page=val;
                 let loadingInstance=Loading.service({
                     target:document.querySelector('.el-table__body-wrapper')
                 })
@@ -129,8 +131,9 @@
                         this.$message.warning(res.message+'_无数据')
                         return
                     }
-                    this.tableData = res.data.courseDetails;
+                    this.tableData = res.data.courses;
                     this.total = res.data.total
+                    console.log(res);
                 }).catch(err => {
                     this.$message.error('请求失败')
                     console.log(err)

@@ -18,3 +18,5 @@ export const getVideoList = curriculumId =>get('video/query/',curriculumId)
 
 export const addVideo = videoMg => post('video/add/',videoMg)
 
+export const changeCurriculum = curriculumMg => post('course/alter/',curriculumMg)
+
