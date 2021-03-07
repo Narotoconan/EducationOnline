@@ -121,8 +121,8 @@
                         this.$message.warning(res.resultCode+'---'+res.message)
                         return
                     }
-                    this.curriculum = res.data.courseDetails[0]
-                    this.videoMg.courseId = res.data.courseDetails[0].courseId
+                    this.curriculum = res.data.courses[0]
+                    this.videoMg.courseId = res.data.courses[0].courseId
                     this.getVideoList()
                 }).catch(err => {
                     this.$message.error('课程信息请求失败')
@@ -140,7 +140,7 @@
                     loadingInstance.close()
                     console.log(res);
                     if (res.resultCode !== 1510) {
-                        this.$message.warning(res.resultCode+'-'+res.message)
+                        this.$message.warning(res.resultCode+' '+res.reason)
                         return
                     }
                     if (!res.data.videos.length) {
