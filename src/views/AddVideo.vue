@@ -66,6 +66,12 @@
                             </template>
                         </el-table-column>
                         <el-table-column
+                                prop="vid"
+                                align="center"
+                                show-overflow-tooltip
+                                label="视频id">
+                        </el-table-column>
+                        <el-table-column
                                 prop="title"
                                 align="center"
                                 show-overflow-tooltip
@@ -79,6 +85,15 @@
                                 {{ scope.row.bv+'---'+scope.row.lesson }}
                             </template>
                         </el-table-column>
+                        <el-table-column
+                                fixed="right"
+                                label="操作"
+                                align="center"
+                                width="200">
+                            <template slot-scope="scope">
+                                <el-button @click="deleteV(scope.row)" type="danger" size="small" round plain>删除视频</el-button>
+                            </template>
+                        </el-table-column>
                     </el-table>
                 </div>
             </div>
@@ -87,7 +102,7 @@
 </template>
 
 <script>
-    import {getCurriculumDetails,addVideo,getVideoList} from "../requests/api";
+    import {getCurriculumDetails,addVideo,getVideoList,deleteVideo} from "../requests/api";
     import { Loading } from 'element-ui';
     export default {
         name: "AddVideo",
@@ -138,7 +153,6 @@
                     asc:false
                 }).then(res => {
                     loadingInstance.close()
-                    console.log(res);
                     if (res.resultCode !== 1510) {
                         this.$message.warning(res.resultCode+' '+res.reason)
                         return
@@ -173,6 +187,21 @@
                 }).catch(err => {
                     this.$message.error('添加视频失败')
                     console.log(err)
+                })
+            },
+            deleteV(row){
+                deleteVideo(
+                    [row.vid]
+                ).then(res => {
+                    if (res.resultCode !== 1530) {
+                        this.$message.warning(res.resultCode+' '+res.message)
+                        return
+                    }
+                    this.$message.success('删除视频成功')
+                    this.getVideoList()
+                }).catch(err => {
+                    this.$message.error('删除视频失败')
+                    console.log(err);
                 })
             }
         }

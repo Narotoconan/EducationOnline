@@ -122,7 +122,7 @@
                     list
                 ).then(res => {
                     if (res.resultCode !== 1250) {
-                        this.$message.warning(res.resultCode + '-' + res.message)
+                        this.$message.warning(res.resultCode + ' ' + res.message)
                         return
                     }
                     this.$message.success('修改成功')

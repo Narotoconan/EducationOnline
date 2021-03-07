@@ -59,7 +59,7 @@
                         align="center"
                         width="300">
                     <template slot-scope="scope">
-                        <el-button @click="changeCur(scope.row)" type="info" size="small" round plain>修改视频</el-button>
+                        <el-button @click="changeCur(scope.row)" type="info" size="small" round plain>修改信息</el-button>
                         <el-button @click="addVideo(scope.row)" type="primary" size="small" round plain>添加视频</el-button>
                         <el-button @click="deleteCur(scope.row)" type="danger" size="small" round plain>删除视频</el-button>
                     </template>
@@ -134,7 +134,6 @@
                     }
                     this.tableData = res.data.courses;
                     this.total = res.data.total
-                    console.log(res);
                 }).catch(err => {
                     this.$message.error('请求失败')
                     console.log(err)
