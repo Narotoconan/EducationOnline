@@ -23,6 +23,12 @@
                         <span slot="name">课程列表</span>
                     </aide-list-item>
                 </li>
+                <li @click="toLogin">
+                    <aide-list-item>
+                        <i class="bi bi-layers" slot="icon"></i>
+                        <span slot="name">登录</span>
+                    </aide-list-item>
+                </li>
             </ul>
         </div>
     </div>
@@ -30,6 +36,7 @@
 
 <script>
     import $ from 'jquery'
+    import {login} from "../../requests/api";
 
     import AideListItem from "./AideListItem";
     export default {
@@ -48,7 +55,23 @@
                 $(".asideList").css({
                     height:$(window).height()
                 })
+            },
+            toLogin(){
+                login({
+                    loginName: "PRICE",
+                    password: "21GrKVUS0w7uMfM6npB2VA=="
+                }).then(res => {
+                    if (res.resultCode !== 1110) {
+                        this.$message.warning(res.resultCode + ' ' + res.message)
+                        return
+                    }
+                    this.$message.success('登录成功')
+                }).catch(err => {
+                    this.$message.error('登录失败')
+                    console.log(err);
+                })
             }
+
         }
     }
 </script>

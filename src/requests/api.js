@@ -24,3 +24,6 @@ export const deleteCur = curriculumId => post('course/delete/',curriculumId)
 
 export const deleteVideo = videoId => post('video/delete/',videoId)
 
+export const login = loginMg => post('/user/login',loginMg)
+
+

@@ -34,4 +34,9 @@
         border-radius: 15px;
         padding: 1rem;
     }
+    body{
+        .el-table::before{
+            z-index: inherit;
+        }
+    }
 </style>

@@ -7,7 +7,10 @@ axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
 //axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
-axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyMtRRKi5NUrJSCgjydHZVAvKS8wtSi5WsopVCg12DgAKOLr6efkqxOkqpFQVA9WaGpuaWphZmBjpKmYklYAETS2NDoEAtAAAA__8.P-CQSE1UwsEtDLhKZ61dATOU4qdeD2K26SRWhRcQhss';
+axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyMtRRKi5NUrJSCgjydHZVAvKS8wtSi5WsopVCg12DgAKOLr6efkqxOkqpFQVA9WaGZgbmpoYWFjpKmYklYAFTI0NDoEAtAAAA__8.E0ebVe4uvY9wK2OV2AysbQ2rf1Gt9Cs4C-HZpn6OM7M';
+axios.defaults.headers.common['Encrypt-Key'] = 'h9i/Vs6QY6KxZsH+MVmqd6haKpmYR0CQnQGsp5UtFDj3bLfYyM9hEFGIO8dR26+Wf9BsBwii51uqNcYKaXBHQltK4hsOIEYx9wIL3gjrFSN6zkhJpKmBOpgMcSowFhVIX6XfRRYUBizhPdHNNPuBx8r8Oa9077Q4yAQmguIvMIE=';
+
+//'Cookie': 'JSESSIONID=AB448F7CF8E78710C6C9285D54504EF1'
 
 /*axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
