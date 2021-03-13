@@ -27,7 +27,7 @@
         methods:{
             full(){
                 $(".login").css({
-                    height:$(window).height()
+                    height:"100vh"
                 });
             },
         }

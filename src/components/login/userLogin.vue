@@ -1,5 +1,5 @@
 <template>
-    <div class="userLogin">
+    <div class="userLogin mt-5">
         <div class="inputGroup">
             <div class="input user">
                 <div>
@@ -24,12 +24,11 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4 ml-4">
-            <el-checkbox v-model="radio" label="1">三天免登陆</el-checkbox>
+        <div class="p-4">
+
         </div>
         <div class="toSubmit mt-3">
-            <el-button round type="warning">登 录</el-button>
-            <el-button round style="margin-left: 1rem" @click="toRoute('/login/toLogin/admin')">管理员登录</el-button>
+            <el-button round type="warning" @click="userLogin" style="width: 50%"> 登 录 </el-button>
             <div class="float-right mt-2">
                 <el-link type="info" @click="toRoute('/login/toSign')">用户注册</el-link>
             </div>
@@ -39,28 +38,33 @@
 
 <script>
     import $ from "jquery";
-
     export default {
         name: "userLogin",
-        data(){
+        data() {
             return {
-                userMessage:'',
-                userPassword:'',
-                radio:false
+                userMessage: '',
+                userPassword: '',
+                radio: false
             }
         },
         mounted() {
             this.iconColor()
         },
-        methods:{
-            toRoute(path){
+        methods: {
+            toRoute(path) {
                 this.$router.push(path);
             },
-            iconColor(){
-                $(".input input").on("focus",function () {
+            iconColor() {
+                $(".input input").on("focus", function () {
                     $(this).parent().siblings(".bi").addClass("iconColor");
-                }).on("blur",function () {
+                }).on("blur", function () {
                     $(this).parent().siblings(".bi").removeClass("iconColor")
+                })
+            },
+            userLogin() {
+                this.$store.dispatch('toLogin', {
+                    userMessage: this.userMessage,
+                    userPassword: this.userPassword,
                 })
             }
         },

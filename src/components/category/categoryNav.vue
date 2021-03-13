@@ -36,23 +36,23 @@
             typeClick(theCode) {
                 switch (theCode) {
                     case '00':
-                        this.toCur('/category/all', theCode);
+                        this.toCate('/category/all', theCode);
                         break;
                     case '10':
-                        this.toCur('/category/math', theCode);
+                        this.toCate('/category/math', theCode);
                         break;
                     case '20':
-                        this.toCur('/category/english', theCode);
+                        this.toCate('/category/english', theCode);
                         break;
                     case '30':
-                        this.toCur('/category/program', theCode);
+                        this.toCate('/category/program', theCode);
                         break;
                     case '40':
-                        this.toCur('/category/hot', theCode);
+                        this.toCate('/category/hot', theCode);
                         break;
                 }
             },
-            toCur(path, theCode) {
+            toCate(path, theCode) {
                 this.$router.push({
                     path: path,
                     query: {
@@ -60,6 +60,9 @@
                     }
                 });
             },
+            toCur(path,theCode){
+                window.location.href=path+'?cur='+theCode
+            }
         }
     }
 </script>

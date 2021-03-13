@@ -23,41 +23,71 @@ const routes = [
             },
             {
                 path: '/home',
-                component: () => import('../views/home')
+                component: () => import('../views/home'),
+                meta:{
+                    title:'“一站式”在线教育'
+                }
             },
             {
                 path: '/category',
                 component: () => import('../views/category'),
+                meta:{
+                    title:'课程分类',
+                },
                 children: [
                     {
                         path: 'hot',
-                        component: () => import('../components/category/hot')
+                        component: () => import('../components/category/hot'),
+                        meta:{
+                            title:'热门课程'
+                        },
                     },
                     {
                         path: 'all',
-                        component: () => import('../components/category/all')
+                        component: () => import('../components/category/all'),
+                        meta:{
+                            title:'全部课程'
+                        },
                     },
                     {
                         path: 'math',
-                        component: () => import('../components/category/math')
+                        component: () => import('../components/category/math'),
+                        meta:{
+                            title:'数学课程'
+                        },
                     },
                     {
                         path: 'english',
-                        component: () => import('../components/category/english')
+                        component: () => import('../components/category/english'),
+                        meta:{
+                            title:'英语课程',
+                        },
                     },
                     {
                         path: 'program',
-                        component: () => import('../components/category/program')
+                        component: () => import('../components/category/program'),
+                        meta:{
+                            title:'代码编程'
+                        },
                     },
-                ]
+                ],
+
             },
+
             {
                 path: '/curriculum',
-                component: () => import('../views/curriculumDetail')
+                component: () => import('../views/curriculumDetail'),
+                meta:{
+                    title:'课程详情'
+                },
             },
             {
                 path: '/profile',
                 component: () => import('../views/profile'),
+                meta: {
+                    title: '个人中心',
+                    requiresAuth: true // 是否需要判断是否登录
+                },
                 children: [
                     {
                         path: '',
@@ -65,30 +95,52 @@ const routes = [
                     },
                     {
                         path: 'userMg',
-                        component: () => import('../components/profile/userMg/userMg')
+                        component: () => import('../components/profile/userMg/userMg'),
+                        meta:{
+                            title:'用户信息',
+                            requiresAuth: true
+                        },
                     },
                     {
                         path: 'browsed',
-                        component: () => import('../components/profile/browsed/browsed')
+                        component: () => import('../components/profile/browsed/browsed'),
+                        meta:{
+                            title:'浏览记录',
+                            requiresAuth: true
+                        },
                     },
                     {
                         path: 'favorites',
-                        component: () => import('../components/profile/favorites/favorites')
+                        component: () => import('../components/profile/favorites/favorites'),
+                        meta:{
+                            title:'课程收藏',
+                            requiresAuth: true
+                        },
                     },
 
-                ]
+                ],
+
             },
             {
                 path: '/video/:videoId',
-                component: () => import('../views/videoPage')
+                component: () => import('../views/videoPage'),
+                meta:{
+                    title:'视频详情'
+                },
             },
             {
                 path: '/curriculum/:curriculumId',
-                component: () => import('../views/curriculumDetail')
+                component: () => import('../views/curriculumDetail'),
+                meta:{
+                    title:'课程详情'
+                },
             },
             {
                 path: '/search',
-                component: () => import('../views/searchPage')
+                component: () => import('../views/searchPage'),
+                meta:{
+                    title:'搜索结果'
+                },
             },
         ]
     },
@@ -103,6 +155,9 @@ const routes = [
             {
                 path: 'toLogin',
                 component: () => import('../components/login/toLogin'),
+                meta:{
+                    title:'登录'
+                },
                 children: [
                     {
                         path: '',
@@ -111,21 +166,24 @@ const routes = [
                     {
                         path: 'user',
                         component: () => import('../components/login/userLogin'),
-                    },
-                    {
-                        path: 'admin',
-                        component: () => import('../components/login/adminLogin'),
+                        meta:{
+                            title:'用户登录'
+                        },
                     },
                 ]
             },
             {
                 path: 'toSign',
                 component: () => import('../components/login/toSign'),
+                meta:{
+                    title:'用户注册'
+                },
             },
         ]
     },
 
 ]
+
 
 const router = new VueRouter({
     mode: 'history',
@@ -139,5 +197,4 @@ const router = new VueRouter({
         }
     },
 })
-
 export default router

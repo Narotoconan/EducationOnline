@@ -20,11 +20,13 @@
 
 <script>
     import asideList from "../components/profile/aside/asideList";
-
     export default {
         name: "profile",
         components: {
             asideList
+        },
+        methods:{
+
         }
     }
 </script>

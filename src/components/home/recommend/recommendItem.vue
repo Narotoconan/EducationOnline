@@ -1,15 +1,15 @@
 <template>
-    <div class="recommendItem col mb-4" @click="toCurriculum('10020')">
+    <div class="recommendItem col mb-4" @click="toCurriculum(curriculum.courseId)">
         <div class="card">
-            <img src="../../../assets/img/test/test3.webp" class="card-img-top" alt="...">
+            <img :src="$store.state.targetURL+curriculum.img" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title mb-4">改稿修炼手册！一个能抢钱的Banner到底怎么排？</h5>
+                <h5 class="card-title mb-4">{{ curriculum.title }}</h5>
                 <div>
-                    <el-avatar size="small" :src="circleUrl"></el-avatar>
-                    <span style="font-weight: 600">William.Jiang</span>
+                    <el-avatar size="small" :src="$store.state.targetURL+curriculum.teacherAvatar"></el-avatar>
+                    <span style="font-weight: 600">{{ curriculum.teacherName }}</span>
                     <div class="float-right">
-                        <el-tag type="success" class="mr-2">编程课</el-tag>
-                        <el-tag type="warning">Python</el-tag>
+                        <el-tag type="success" class="mr-2" @click.stop="toCate(curriculum.categoryURLName,curriculum.categoryParentId)">{{ curriculum.categoryParent }}</el-tag>
+                        <el-tag type="warning" @click.stop="toCate(curriculum.categoryURLName,curriculum.categoryChildrenId)">{{ curriculum.categoryChildren}}</el-tag>
                     </div>
                 </div>
             </div>
@@ -22,15 +22,26 @@
         name: "recommendItem",
         data(){
             return{
-                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+
             }
         },
+        props:{
+            curriculum:Object
+        },
         methods:{
+            toCate(path,code){
+                this.$router.push({
+                    path:'/category/'+path,
+                    query:{
+                        cur:code
+                    }
+                })
+            },
             toCurriculum(curriculumId){
                 this.$router.push({
                     path:`/curriculum/${curriculumId}`,
                 })
-            }
+            },
         }
     }
 </script>

@@ -11,7 +11,7 @@
                 <el-button type="danger" icon="el-icon-s-opportunity" size="mini" @click="$router.push('/category/program?cur=31')">课程：Java</el-button>
             </div>
             <div class="videoBox">
-                <iframe src="https://player.bilibili.com/player.html?bvid=BV1Yt411H7An&high_quality=1&page=1&danmaku=0"
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1ax411Y7qU&page=3&high_quality=1&danmaku=0"
                         frameborder="no" width="100%" height="100%" allowfullscreen="true"
                         sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
                 </iframe>
@@ -23,7 +23,7 @@
                             <i class="bi bi-chat-left-text-fill"></i>
                             课程内容
                         </div>
-                        <p>《文章》包括各种文体的著作、作品，如诗歌、戏剧、小说、科学论文，记叙文、议论文、说明文、应用文等等。“千古文章未尽才”“文章千古事”“文章憎命达”“板凳要坐十年冷、文章不写一字空”“积句而成章，积章而成篇”“言出为论，下笔成章”等，都是现在所说的文章的意思。更广义的文章，也包含“学问”“奥秘”等意思，如“洞明世事皆学问，人情练达即文章”就是。</p>
+                        <p>《文章》包括各种文体的著作、</p>
                     </div>
                 </div>
                 <div class="col-3 teacher">

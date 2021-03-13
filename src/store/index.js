@@ -1,22 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import mutations from "./mutations"
-import actions from "./actions"
-
 import curriculumList from './modules/curriculumList'
 import searchPage from './modules/searchPage'
+import loginPage from "./modules/loginPage";
+import homePage from "./modules/homePage";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{
-    toLogin:false,
+    targetURL:'http://39.97.185.232:25565'
   },
-  mutations,
-  actions,
+  mutations:{},
+  actions:{},
+  getters:{},
   modules: {
     curriculumList,
-    searchPage
+    searchPage,
+    loginPage,
+    homePage
   }
 })

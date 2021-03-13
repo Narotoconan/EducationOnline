@@ -36,6 +36,7 @@
                 this.$confirm('是否取消此收藏？, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
+                    lockScroll:false,
                     type: 'warning'
                 }).then(() => {
                     this.$message({

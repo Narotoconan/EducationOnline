@@ -1,4 +1,4 @@
-import {search} from '../../requests/api'
+
 //搜索页面
 export default {
     state: {

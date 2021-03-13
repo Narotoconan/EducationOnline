@@ -1,4 +1,5 @@
 import category from "../../assets/js/category";
+import apis from '../../requests/apis/curriculumApi'
 //课程列表页面
 export default {
     state: {
@@ -106,6 +107,12 @@ export default {
         },
         activeCur(state,payload){
             category.curAdd(payload);
-        }
+        },
+
     },
+    actions:{
+        getCateCur(context,payload){
+            return apis.getCurriculum(payload)
+        }
+    }
 }

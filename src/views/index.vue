@@ -1,7 +1,9 @@
 <template>
     <div class="index">
         <nav-bar></nav-bar>
-        <router-view></router-view>
+        <keep-alive include="home">
+            <router-view></router-view>
+        </keep-alive>
         <footerMg/>
         <el-backtop></el-backtop>
     </div>

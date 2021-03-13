@@ -1,17 +1,17 @@
 <template>
     <div class="all">
         <div class="row row-cols-1 row-cols-md-3">
-            <div v-for="item in 9">
-                <recommend-item/>
-            </div>
+            <recommend-item v-for="item in curriculumList"
+                            :curriculum="item"
+                            :key="item.courseId"/>
         </div>
         <div class="mt-5" style="text-align: center">
             <el-pagination
                     background
                     layout="prev, pager, next"
-                    :page-size="4"
-                    :total="16"
-                    @current-change="handleCurrentChange">
+                    :page-size="size"
+                    :total="totalCount"
+                    @current-change="getCur">
             </el-pagination>
         </div>
     </div>
@@ -28,7 +28,10 @@
         },
         data(){
           return {
-
+              page:1,
+              size:9,
+              totalCount:1,
+              curriculumList:[]
           }
         },
         mounted() {
@@ -37,7 +40,8 @@
             this.$store.commit('showCur','00');
             this.$nextTick(() => {
                 this.$store.commit('activeCur','1');
-            })
+            });
+            this.getCur(this.page)
         },
         beforeRouteLeave(to, from, next){
             category.typeClassRemove(1);
@@ -45,9 +49,29 @@
         },
 
         methods:{
-            handleCurrentChange(val) {
-                console.log(val);
-            },
+            getCur(page){
+                this.page=page;
+                this.$store.dispatch('getCateCur',{
+                    c:page,
+                    s:this.size,
+                    asc:true,
+                }).then(res => {
+                    if (res.resultCode !== 1210) {
+                        this.$message.warning(res.resultCode+'-'+res.message)
+                        return
+                    }
+                    if (!res.data.total) {
+                        this.$message.warning('无课程')
+                        return
+                    }
+                    this.curriculumList = res.data.courses
+                    this.totalCount = res.data.total
+                    category.changeBg(this.$store.state.targetURL+this.curriculumList[0].img)
+                }).catch(err => {
+                    this.$message.error('获取课程失败')
+                    console.log(err);
+                })
+            }
         }
     }
 </script>

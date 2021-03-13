@@ -22,8 +22,23 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+router.beforeResolve((to,from,next) => {
+  if (to.matched.some(record => record.meta.title)){
+    document.title= to.meta.title
+  }else {
+    document.title="“一站式”在线教育"
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth)){
+    if (store.getters.checkLogin) next()
+    else next(window.location.href='/login')
+  }else {
+    next()
+  }
+})
 
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import el from "element-ui/src/locale/lang/el";
