@@ -8,6 +8,9 @@ export default {
     actions: {
         getUserMg(context,payload) {
             return apis.userMessage(payload)
+        },
+        putUserAvatar(context,payload){
+            return apis.changeUserAvatar(payload)
         }
     },
     getters: {

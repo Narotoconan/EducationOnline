@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import qs from 'qs'
 axios.defaults.baseURL = '/api'
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 1000 * 5
@@ -66,8 +66,26 @@ function passwordPost(url, params,encryptKey) {
     });
 }
 
+function avatarPost(url, params) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'post',
+            url:url,
+            data: params,
+            headers:{
+                "content-type":'application/x-www-form-urlencoded;charset=utf-8'
+            }
+        }).then(res => {
+            resolve(res.data);
+        }).catch(err => {
+            reject(err)
+        });
+    });
+}
+
 export default {
     get,
     post,
     passwordPost,
+    avatarPost,
 }

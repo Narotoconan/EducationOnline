@@ -3,7 +3,8 @@
         <div id="toAvatar" @click="dialogUploadAvVisible= true">
             <div>修改头像</div>
         </div>
-        <el-dialog title="头像修改" :visible.sync="dialogUploadAvVisible" width="55rem" :lock-scroll="false" :close-on-click-modal="false">
+        <el-dialog title="头像修改" :visible.sync="dialogUploadAvVisible" width="55rem" :lock-scroll="false"
+                   :close-on-click-modal="false">
             <div class="mb-3" style="text-align: left">
                 <div class="upload">
                     <label for="inputFile">
@@ -22,7 +23,7 @@
             </div>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogUploadAvVisible = false">取 消</el-button>
-                <el-button type="warning" id="toUpload" @click="dialogUploadAvVisible = true">确 定</el-button>
+                <el-button type="warning" id="toUpload" @click="toBolb">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -34,48 +35,69 @@
 
     export default {
         name: "changeAv",
-        data(){
+        data() {
             return {
-                dialogUploadAvVisible:false,
+                dialogUploadAvVisible: false,
                 dialogImageUrl: '',
                 dialogVisible: false,
-                showImg: String
+                cropper: null,
+                showImg: String,
+                avatarBlob: null
             }
-        },
-        mounted() {
         },
         methods: {
             toCropper() {
                 const userAvatar = $("#userAvatar")[0];
-                const cropper = new Cropper(userAvatar, {
+                this.cropper = new Cropper(userAvatar, {
                     aspectRatio: 2 / 2,
                     viewMode: 2,
                     preview: '.preview'
-                });
-                $("#toUpload").on("click", function () {
-                    const cas = cropper.getCroppedCanvas({
-                        width: 100,
-                        height: 100
-                    });
-                    const base64url = cas.toDataURL('image/jpeg');
-                    console.log(base64url);
-                });
+                })
+                let vm = this
                 const inputFile = document.getElementById("inputFile");
 
-                let vm = this;
                 inputFile.addEventListener('change', function () {
                     const file = this.files[0];
                     const reader = new FileReader();
                     // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
                     reader.addEventListener("load", function () {
                         vm.showImg = reader.result;
-                        cropper.replace(vm.showImg,false)
+                        vm.cropper.replace(vm.showImg, false)
                     }, false);
                     // 调用reader.readAsDataURL()方法，把图片转成base64
                     reader.readAsDataURL(file);
 
                 }, false);
             },
+            toBolb(){
+                const cas = this.cropper.getCroppedCanvas({
+                    width: 100 *3,
+                    height: 100 *3
+                });
+                let vm =this
+                cas.toBlob(function (e) {
+                    vm.changeAvatar(e) //生成Blob的图片格式
+                });
+            },
+            changeAvatar(avatarBlob) {
+                const formData = new FormData()
+                console.log(avatarBlob);
+                formData.append('userAvatar',avatarBlob)
+                this.$store.dispatch('putUserAvatar',
+                    formData
+                ).then(res => {
+                    if (res.resultCode !== 1160) { //判断业务状态码
+                        this.$message.warning(res.resultCode + ' ' + res.message)
+                        return
+                    }
+                    this.$message.success('修改成功')
+                    this.cropper.destroy();
+                    this.dialogUploadAvVisible = false
+                }).catch(err => {
+                    this.$message.error('修改头像失败')
+                    console.log(err)
+                })
+            }
         }
     }
 </script>

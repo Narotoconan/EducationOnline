@@ -2,7 +2,7 @@
     <div class="userMg">
         <div class="userMgOne row">
             <div class="col">
-                <user-card :userName="userName"/>
+                <user-card/>
             </div>
             <div class="col">
                 <change-psw/>

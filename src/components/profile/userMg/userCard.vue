@@ -17,16 +17,14 @@
         name: "userCard",
         data() {
             return {
-                circleUrl:  this.$store.state.targetURL+this.$store.getters.getUser.userAvatar,
+                circleUrl: this.$store.state.targetURL+this.$store.getters.getUser.userAvatar,
                 nowTime: '',
+                userName:this.$store.getters.getUser.username,
             }
         },
         components:{
             changeMg,
             changeAv
-        },
-        props:{
-            userName:String,
         },
         mounted() {
             this.nowHours()

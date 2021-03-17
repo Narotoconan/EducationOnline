@@ -23,7 +23,7 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary"
-                           @click="aaa"
+                           @click="submitForm('ruleForm')"
                            style="background-color: #e37426;border-color: #e37426">
                     确认修改
                 </el-button>
@@ -51,7 +51,9 @@
             return {
                 form:{},
                 originForm:{},
-                toUpForm:{},
+                toUpForm:{
+                    uid:this.$store.getters.getUser.userId
+                },
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
                 rules: {
@@ -114,7 +116,16 @@
                 this.originForm.userGender = this.$store.getters.getUser.userGender
                 this.form.userGender = String(this.form.userGender)
             },
-            aaa(){
+            submitForm(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (!valid) {
+                        this.$message.error('填写格式有误')
+                        return false
+                    }
+                    this.toChange()
+                });
+            },
+            toChange(){
                 console.log(this.toUpForm);
             }
         }

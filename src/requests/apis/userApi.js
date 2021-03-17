@@ -7,4 +7,5 @@ export default {
     userFavorite:'',//获取用户收藏课程
     userAddFavorite:'',//添加收藏
     userDelFavorite:'',//取消收藏
+    changeUserAvatar: avatar => apis.avatarPost('/user/avatar/upload',avatar)
 }
