@@ -1,4 +1,4 @@
-
+import apis from '../../requests/apis/curriculumApi'
 //搜索页面
 export default {
     state: {
@@ -10,14 +10,8 @@ export default {
         }
     },
     actions: {
-        getSearchList(context) {
-            search({
-                userID:'2001002'
-            }).then(res => {
-                context.commit('toSearchList',res)
-            }).catch(err => {
-                console.log(err);
-            })
+        getSearchList(context,payload) {
+            return apis.getCurriculum(payload)
         }
     }
 }

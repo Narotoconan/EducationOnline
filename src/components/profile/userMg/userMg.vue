@@ -2,14 +2,14 @@
     <div class="userMg">
         <div class="userMgOne row">
             <div class="col">
-                <user-card/>
+                <user-card :userName="userName"/>
             </div>
             <div class="col">
                 <change-psw/>
             </div>
         </div>
         <div class="userMgTwo mt-5">
-            <user-actions/>
+            <user-actions :userMessage="userMessage"/>
         </div>
     </div>
 </template>
@@ -25,6 +25,18 @@
             userActions,
             userCard,
             changePsw
+        },
+        data() {
+            return {
+                userId: '',
+                userName: '',
+                userMessage: {}
+            }
+        },
+        mounted: function () {
+            this.userMessage=JSON.parse(localStorage.getItem('user'))
+        },
+        methods: {
         }
     }
 </script>

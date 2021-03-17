@@ -42,6 +42,16 @@
             category.typeClassRemove(4);
             next();
         },
+        watch:{
+            $route(){
+                let cur = Number(this.$route.query.cur)
+                if (cur!==30){
+                    this.getCur(this.page,cur)
+                    return
+                }
+                this.getCur(this.page)
+            },
+        },
         methods:{
             getCur(page,cur){
                 this.page=page;

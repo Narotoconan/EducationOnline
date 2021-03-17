@@ -1,7 +1,7 @@
 <template>
     <div class="recommendItem col mb-4" @click="toCurriculum(curriculum.courseId)">
         <div class="card">
-            <img :src="$store.state.targetURL+curriculum.img" class="card-img-top" alt="...">
+            <img :src="$store.state.targetURL+curriculum.img" class="card-img-top" alt="..." style="height: 193px">
             <div class="card-body">
                 <h5 class="card-title mb-4">{{ curriculum.title }}</h5>
                 <div>

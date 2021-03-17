@@ -48,8 +48,6 @@
                             return
                         }
                         this.recommendList = res.data.courses
-                        console.log(res.data.courses);
-                        console.log(this.recommendList);
                     }).catch(err => {
                     this.$message.error('推荐课程失败')
                     console.log(err);

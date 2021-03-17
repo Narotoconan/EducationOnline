@@ -3,7 +3,7 @@
         <div id="toAvatar" @click="dialogUploadAvVisible= true">
             <div>修改头像</div>
         </div>
-        <el-dialog title="头像修改" :visible.sync="dialogUploadAvVisible" width="55rem" :lock-scroll="false">
+        <el-dialog title="头像修改" :visible.sync="dialogUploadAvVisible" width="55rem" :lock-scroll="false" :close-on-click-modal="false">
             <div class="mb-3" style="text-align: left">
                 <div class="upload">
                     <label for="inputFile">

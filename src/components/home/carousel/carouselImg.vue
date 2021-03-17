@@ -6,14 +6,14 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
+            <div class="carousel-inner" >
+                <div class="carousel-item active" @click.stop="toRoute('/category/program?cur=34')">
                     <img src="../../../assets/img/carousel/tu-1.png" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" @click.stop="toRoute('/category/english?cur=22')">
                     <img src="../../../assets/img/carousel/tu-2.png" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" @click.stop="toRoute('/category/math?cur=14.stop')">
                     <img src="../../../assets/img/carousel/tu-3.png" class="d-block w-100" alt="...">
                 </div>
             </div>
@@ -31,7 +31,12 @@
 
 <script>
     export default {
-        name: "carouselImg"
+        name: "carouselImg",
+        methods:{
+            toRoute(path){
+                this.$router.push(path)
+            }
+        }
     }
 </script>
 

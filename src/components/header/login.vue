@@ -43,7 +43,7 @@
         name: "login",
         data() {
             return {
-                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+                circleUrl: "",
                 userName:' '
             }
         },
@@ -60,8 +60,19 @@
             },
             getUserMg(){
                 if (!this.$store.getters.checkLogin) return
-                let userMessage = JSON.parse(localStorage.getItem('userMessage'))
-                this.userName = userMessage.username
+                this.$store.dispatch('getUserMg', this.$store.getters.getMessage.uid)
+                    .then(res => {
+                        if (res.resultCode !== 1140) { //判断业务状态码
+                            this.$message.warning(res.resultCode + ' ' + res.message);
+                            return;
+                        }
+                        this.circleUrl = this.$store.state.targetURL + res.data.userDetails.userAvatar
+                        this.userName = res.data.userDetails.username
+                        localStorage.setItem("user", JSON.stringify(res.data.userDetails));
+                    }).catch(err => {
+                    this.$message.error('获取用户信息失败')
+                    console.log(err)
+                })
             },
             exitLogin(){
                 this.$store.commit('exitLogin')

@@ -1,19 +1,19 @@
 <template>
     <div class="searchCard">
         <div class="item">
-            <img src="../../assets/img/test/test1.webp" alt="">
+            <img :src="$store.state.targetURL+curriculum.img" alt="" @click="toCur(curriculum.courseId)">
             <div class="d-inline-block ml-4 position-relative h-100" style="width: 60%">
-                <div class="curTitle">改稿修炼手册！一个能抢钱的Banner到底怎么排？</div>
+                <div class="curTitle" @click="toCur(curriculum.courseId)">{{ curriculum.title }}</div>
                 <div class="mt-4">
-                    <small class="text-black-50">本课程对每个专题的讲座内容进行系统整理，形成了由讲座概要讲座内容进行系统整理，形成了由讲座概要讲座内容进行系统整理，形成了由讲座概要、专题内容、拓展阅读文献、</small>
+                    <small class="text-black-50" style="text-indent: 2em;">{{ curriculum.description }}</small>
                 </div>
                 <div class="cardB">
-                    <el-avatar size="small" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                    <span class="ml-2">William</span>
-                    <div class="itemDate text-black-50">2012-05-06</div>
-                    <div class="itemCate">
-                        <el-tag size="mini" type="success">编程课</el-tag>
-                        <el-tag size="mini" type="warning" style="margin-left: 10px">Java</el-tag>
+                    <el-avatar size="small" :src="$store.state.targetURL+curriculum.teacherAvatar"></el-avatar>
+                    <span class="ml-2">{{ curriculum.teacherName }}</span>
+                    <div class="itemDate text-black-50">{{ curriculum.startTime.split(' ')[0] }}</div>
+                    <div class="itemCate float-right">
+                        <el-tag type="success" class="mr-2" @click.stop="toCate(curriculum.categoryURLName,curriculum.categoryParentId)">{{ curriculum.categoryParent }}</el-tag>
+                        <el-tag type="warning" @click.stop="toCate(curriculum.categoryURLName,curriculum.categoryChildrenId)">{{ curriculum.categoryChildren}}</el-tag>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,25 @@
 
 <script>
     export default {
-        name: "searchCard"
+        name: "searchCard",
+        props:{
+            curriculum:Object
+        },
+        methods:{
+            toCate(path,code){
+                this.$router.push({
+                    path:'/category/'+path,
+                    query:{
+                        cur:code
+                    }
+                })
+            },
+            toCur(curId){
+                this.$router.push({
+                    path:'/curriculum/'+curId,
+                })
+            }
+        }
     }
 </script>
 

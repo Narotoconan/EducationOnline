@@ -125,7 +125,8 @@ const routes = [
                 path: '/video/:videoId',
                 component: () => import('../views/videoPage'),
                 meta:{
-                    title:'视频详情'
+                    title:'视频详情',
+                    requiresAuth: true
                 },
             },
             {

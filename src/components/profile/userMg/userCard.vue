@@ -2,7 +2,7 @@
     <div class="userCard position-relative">
         <img :src="circleUrl" alt="avatar" class="avatar">
         <div class="userCardName d-inline-block align-middle ml-4">
-            <span>William.Will</span>
+            <span>{{ userName }}</span>
             <div class="text-black-50">{{ nowTime }}</div>
             <change-mg/>
         </div>
@@ -17,13 +17,16 @@
         name: "userCard",
         data() {
             return {
-                circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+                circleUrl:  this.$store.state.targetURL+this.$store.getters.getUser.userAvatar,
                 nowTime: '',
             }
         },
         components:{
             changeMg,
             changeAv
+        },
+        props:{
+            userName:String,
         },
         mounted() {
             this.nowHours()

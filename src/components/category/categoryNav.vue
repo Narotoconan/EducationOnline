@@ -36,32 +36,30 @@
             typeClick(theCode) {
                 switch (theCode) {
                     case '00':
-                        this.toCate('/category/all', theCode);
+                        this.toCur('/category/all', theCode);
                         break;
                     case '10':
-                        this.toCate('/category/math', theCode);
+                        this.toCur('/category/math', theCode);
                         break;
                     case '20':
-                        this.toCate('/category/english', theCode);
+                        this.toCur('/category/english', theCode);
                         break;
                     case '30':
-                        this.toCate('/category/program', theCode);
+                        this.toCur('/category/program', theCode);
                         break;
                     case '40':
-                        this.toCate('/category/hot', theCode);
+                        this.toCur('/category/hot', theCode);
                         break;
                 }
             },
-            toCate(path, theCode) {
+            toCur(path,theCode){
+                //window.location.href=path+'?cur='+theCode
                 this.$router.push({
                     path: path,
                     query: {
                         cur: theCode
                     }
                 });
-            },
-            toCur(path,theCode){
-                window.location.href=path+'?cur='+theCode
             }
         }
     }

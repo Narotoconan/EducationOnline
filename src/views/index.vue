@@ -1,7 +1,7 @@
 <template>
     <div class="index">
         <nav-bar></nav-bar>
-        <keep-alive include="home">
+        <keep-alive include="home,searchPage,curriculum">
             <router-view></router-view>
         </keep-alive>
         <footerMg/>

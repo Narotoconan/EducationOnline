@@ -3,7 +3,7 @@
         <div @click="dialogPasswordVisible = true" class="changePsw">
             <el-button type="warning" round>修改密码</el-button>
         </div>
-        <el-dialog title="密码修改" :visible.sync="dialogPasswordVisible">
+        <el-dialog title="密码修改" :visible.sync="dialogPasswordVisible" :lock-scroll="false" :close-on-click-modal="false">
             <el-form :model="changePsw" style="width: 90%">
                 <el-form-item label="旧密码" :label-width="formLabelWidth">
                     <el-input placeholder="请输入旧密码" v-model="changePsw.oldPsw" show-password></el-input>

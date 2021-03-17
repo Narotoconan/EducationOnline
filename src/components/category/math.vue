@@ -42,6 +42,16 @@
             category.typeClassRemove(2);
             next();
         },
+        watch:{
+            $route(){
+                let cur = Number(this.$route.query.cur)
+                if (cur!==10){
+                    this.getCur(this.page,cur)
+                    return
+                }
+                this.getCur(this.page)
+            },
+        },
         methods:{
             getCur(page,cur){
                 this.page=page;
@@ -58,6 +68,7 @@
                     }
                     if (!res.data.total) {
                         this.$message.warning('无课程')
+                        console.log(res);
                         return
                     }
                     this.curriculumList = res.data.courses
@@ -85,7 +96,6 @@
                         case '12':
                             this.$store.commit('activeCur','3');
                             this.getCur(this.page,12)
-                            console.log("math");
                             break;
                         case '13':
                             this.$store.commit('activeCur','4');

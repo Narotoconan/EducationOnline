@@ -4,6 +4,7 @@ import CryptoJS from 'crypto-js'
 import JSEncrypt from 'jsencrypt/bin/jsencrypt.min'
 import jwtDecode from "jwt-decode";
 import {Message} from "element-ui";
+import router from "../../router";
 
 export default {
     state: {
@@ -79,7 +80,7 @@ LjOrx7KoW0KlL2xx9wIDAQAB
                     localStorage.setItem("userMessage", JSON.stringify(userMessage)); //存放用户信息
                     Message.success('登录成功')
                     setTimeout(function () {    //跳转到首页
-                        window.location.href = '/home'
+                        router.go(-1) //返回上一个页面
                     }, 2000);
                 }).catch(err => {
                 Message.error('登录失败')

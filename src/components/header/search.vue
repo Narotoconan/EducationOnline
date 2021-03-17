@@ -3,6 +3,7 @@
             <el-input
                     placeholder="请输入内容"
                     @keypress.enter.native="toSearchPage()"
+                    style="border: 1px solid #e4e6ea;border-radius: 50px"
                     v-model="search">
                 <i class="el-icon-search el-input__icon" slot="suffix" @click="toSearchPage()"></i>
             </el-input>
@@ -27,6 +28,7 @@
                             w:searchWords
                         }
                     })
+                    this.search=''
                 }
             }
         }

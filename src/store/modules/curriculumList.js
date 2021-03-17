@@ -4,6 +4,7 @@ import apis from '../../requests/apis/curriculumApi'
 export default {
     state: {
         curriculum: [],
+        video:[],
         all: [
             {
                 name: '全部课程',
@@ -108,11 +109,19 @@ export default {
         activeCur(state,payload){
             category.curAdd(payload);
         },
-
+        saveVideoMg(state,payload){
+            state.video = payload
+        }
     },
     actions:{
         getCateCur(context,payload){
             return apis.getCurriculum(payload)
+        },
+        getCurVideo(context,payload){
+          return apis.getCurriculumVideo(payload)
+        },
+        getVideoMessage(context,payload){
+            return apis.getVideo(payload)
         }
     }
 }
