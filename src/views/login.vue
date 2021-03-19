@@ -23,6 +23,7 @@
         name: "login",
         mounted() {
             this.full()
+            this.$store.commit('exitUserLogin',1)
         },
         methods:{
             full(){

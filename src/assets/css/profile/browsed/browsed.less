@@ -2,6 +2,7 @@
 .browsed{
   height: 49rem;
   overflow: auto;
+  cursor: default;
 }
 .browsed::-webkit-scrollbar{
   width: 0;
@@ -64,6 +65,9 @@
         font-weight: 600;
         margin-left: 1.45rem;
         .title{
+          &:hover{
+            color: @themeColor !important;
+          }
           white-space:nowrap;
           overflow:hidden;
           text-overflow:ellipsis;

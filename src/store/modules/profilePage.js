@@ -9,9 +9,18 @@ export default {
         getUserMg(context,payload) {
             return apis.userMessage(payload)
         },
-        putUserAvatar(context,payload){
+            putUserAvatar(context,payload){
             return apis.changeUserAvatar(payload)
-        }
+        },
+        getUserFavorites(context,payload) {
+            return apis.userFavorite(payload)
+        },
+        changeUserMessage(context,payload) {
+            return apis.changeMessage(payload)
+        },
+        getUserBrowsed(context,payload) {
+            return apis.toGetBrowsed(payload)
+        },
     },
     getters: {
         getMessage(){
@@ -21,6 +30,7 @@ export default {
         getUser(){
             let userMessage = localStorage.getItem('user')
             return JSON.parse(userMessage)
-        }
+        },
+
     },
 }

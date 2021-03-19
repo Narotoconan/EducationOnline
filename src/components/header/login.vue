@@ -75,7 +75,7 @@
                 })
             },
             exitLogin(){
-                this.$store.commit('exitLogin')
+                this.$store.commit('exitUserLogin')
             }
 
         }

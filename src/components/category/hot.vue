@@ -56,9 +56,7 @@
             getCur(page){
                 this.page=page;
                 this.$store.dispatch('getCateCur',{
-                    c:page,
-                    s:this.size,
-                    asc:true,
+                    hot:true
                 }).then(res => {
                     if (res.resultCode !== 1210) {
                         this.$message.warning(res.resultCode+'-'+res.message)

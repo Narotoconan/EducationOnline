@@ -9,7 +9,7 @@
                         <div class="mb-1">
                             <small class="text-black-50">用户名/ Name</small>
                         </div>
-                        <input type="text" v-model="sign.userName" placeholder="用户名称">
+                        <input type="text" v-model="sign.username" placeholder="用户名称">
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                         <div class="mb-1">
                             <small class="text-black-50">邮箱/ Email</small>
                         </div>
-                        <input type="email" v-model="sign.userEmail" placeholder="绑定邮箱">
+                        <input type="email" v-model="sign.email" placeholder="绑定邮箱">
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         <div class="mb-1">
                             <small class="text-black-50">密码/ Password</small>
                         </div>
-                        <input type="password" v-model="sign.userPassword" placeholder="密码">
+                        <input type="password" v-model="sign.password" placeholder="密码">
                     </div>
                 </div>
             </div>
@@ -40,16 +40,16 @@
                     <i class="bi bi-exclude mr-3"></i>
                     <div class="d-inline-block">
                         <div class="mb-1">
-                            <small class="text-black-50">性别/ Gender</small>
+                            <small class="text-black-50">性别 / Gender</small>
                         </div>
-                        <el-radio v-model="sign.userGender" label="1">男性</el-radio>
-                        <el-radio v-model="sign.userGender" label="2">女性</el-radio>
+                        <el-radio v-model="sign.gender" label="1">男性</el-radio>
+                        <el-radio v-model="sign.gender" label="0">女性</el-radio>
                     </div>
                 </div>
             </div>
         </div>
         <div class="mt-4" style="text-align: center">
-            <el-button type="warning" round plain> 注 册 账 号 </el-button>
+            <el-button type="warning" round plain @click="signAccount"> 注 册 账 号 </el-button>
         </div>
     </div>
 </template>
@@ -62,11 +62,10 @@
         data(){
             return{
                 sign:{
-                    userName:'',
-                    userEmail:'',
-                    userPassword:'',
-                    userTelephone:'',
-                    userGender:'1'
+                    username:'',
+                    email:'',
+                    password:'',
+                    gender:'1'
                 }
             }
         },
@@ -80,6 +79,9 @@
                 }).on("blur",function () {
                     $(this).parent().siblings(".bi").removeClass("iconColor")
                 })
+            },
+            signAccount(){
+                this.$store.dispatch('toSignAccount',this.sign)
             }
         }
     }

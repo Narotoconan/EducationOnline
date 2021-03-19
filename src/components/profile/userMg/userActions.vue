@@ -59,12 +59,9 @@
         components:{
             actionsItem
         },
-        props:{
-            userMessage:Object
-        },
         data() {
             return {
-
+                userMessage:this.userMessage=JSON.parse(localStorage.getItem('user'))
             }
         },
         mounted() {

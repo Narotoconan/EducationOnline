@@ -122,6 +122,15 @@ export default {
         },
         getVideoMessage(context,payload){
             return apis.getVideo(payload)
-        }
+        },
+        addFavorite(context,payload){
+            return apis.addFavoriteCur(payload)
+        },
+        delFavorite(context,payload){
+            return apis.adelFavoriteCur(payload)
+        },
+        isFavorite(context,payload){
+            return apis.isFavoriteCur(payload)
+        },
     }
 }

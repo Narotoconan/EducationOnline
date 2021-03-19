@@ -33,7 +33,7 @@
         <li>
             <div>
                 <i class="el-icon-s-help" style="color: #21e6c1"></i>
-                <span>退出登录</span>
+                <span @click="$store.commit('exitUserLogin')">退出登录</span>
             </div>
         </li>
     </ul>

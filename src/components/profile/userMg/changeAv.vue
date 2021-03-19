@@ -32,6 +32,7 @@
 <script>
     import $ from 'jquery'
     import Cropper from 'cropperjs'
+    import router from "../../../router";
 
     export default {
         name: "changeAv",
@@ -91,10 +92,27 @@
                         return
                     }
                     this.$message.success('修改成功')
-                    this.cropper.destroy();
+                    this.cropper.destroy()
                     this.dialogUploadAvVisible = false
+                    this.getUserMg()
+                    setTimeout(function () {
+                        router.go(0) //刷新
+                    }, 1000);
                 }).catch(err => {
                     this.$message.error('修改头像失败')
+                    console.log(err)
+                })
+            },
+            getUserMg(){
+                this.$store.dispatch('getUserMg', this.$store.getters.getMessage.uid)
+                    .then(res => {
+                        if (res.resultCode !== 1140) { //判断业务状态码
+                            this.$message.warning(res.resultCode + ' ' + res.message);
+                            return;
+                        }
+                        localStorage.setItem("user", JSON.stringify(res.data.userDetails));
+                    }).catch(err => {
+                    this.$message.error('获取用户信息失败')
                     console.log(err)
                 })
             }

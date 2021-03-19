@@ -34,7 +34,7 @@
             }
         },
         mounted: function () {
-            this.userMessage=JSON.parse(localStorage.getItem('user'))
+
         },
         methods: {
         }

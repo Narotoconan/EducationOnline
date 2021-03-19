@@ -5,6 +5,7 @@ import JSEncrypt from 'jsencrypt/bin/jsencrypt.min'
 import jwtDecode from "jwt-decode";
 import {Message} from "element-ui";
 import router from "../../router";
+import el from "element-ui/src/locale/lang/el";
 
 export default {
     state: {
@@ -32,7 +33,6 @@ LjOrx7KoW0KlL2xx9wIDAQAB
             state.RandomKey = result.toLowerCase();//另toLowerCase()转小写
         },
         toAes(state) {
-            this.commit('getRamNumber');
             //AES加密
             //let aesText
             let cryptKey = CryptoJS.enc.Utf8.parse(state.RandomKey);
@@ -53,17 +53,30 @@ LjOrx7KoW0KlL2xx9wIDAQAB
             //RSA加密
             state.RsaRandomKey = encrypt.encrypt(state.RandomKey).toString();
         },
-        exitLogin() {
+        exitUserLogin(state,payload) {
             localStorage.removeItem('access_token')
             localStorage.removeItem('userMessage')
+            localStorage.removeItem('user')
+            if (payload) return
             window.location.href = '/home'
         },
+        goBack(state,payload){
+
+            setTimeout(function () {
+                if (window.history.length === 0){
+                    window.location.href='/home'
+                }else {
+                    router.go(payload) //返回上一个页面
+                }
+            }, 1000);
+        }
     },
     actions: {
         toLogin(context, payload) {
             context.state.userPassword = payload.userPassword
             context.state.userMessage = payload.userMessage
             //加密信息
+            context.commit('getRamNumber');
             context.commit('toAes')
             context.commit('toRsa')
             apis.userLogin({//发送信息
@@ -72,21 +85,70 @@ LjOrx7KoW0KlL2xx9wIDAQAB
             }, context.state.RsaRandomKey)
                 .then((res) => {
                     if (res.resultCode !== 1110) { //判断业务状态码
-                        Message.warning(res.resultCode + ' ' + res.message)
+                        Message.warning(res.resultCode + ' ' + res.message + ' ' + res.reason)
                         return
                     }
                     localStorage.setItem("access_token", res.data.token); //存放token
                     let userMessage = jwtDecode(res.data.token)//解析token信息
                     localStorage.setItem("userMessage", JSON.stringify(userMessage)); //存放用户信息
                     Message.success('登录成功')
-                    setTimeout(function () {    //跳转到首页
-                        router.go(-1) //返回上一个页面
-                    }, 2000);
+                    context.commit('goBack',-1)
                 }).catch(err => {
                 Message.error('登录失败')
                 console.log(err)
             })
         },
+        toSignAccount(context, payload) {
+            context.state.userPassword = payload.password
+            context.commit('getRamNumber');
+            context.commit('toAes')
+            context.commit('toRsa')
+            payload.password = context.state.aesQuestData
+            apis.signUser(payload, context.state.RsaRandomKey)
+                .then(res => {
+                    if (res.resultCode !== 1130) { //判断业务状态码
+                        Message.warning(res.resultCode + ' ' + res.message + ' ' + res.reason)
+                        return
+                    }
+                    Message.success('注册成功')
+                    context.commit('goBack',-1)
+                }).catch(err => {
+                Message.error('注册失败')
+                console.log(err)
+            })
+        },
+        updatePassword(context, payload){
+            let oldPassword = payload.oldPwd
+            let newPassword = payload.newPwd
+
+            context.commit('getRamNumber')
+            //加密旧密码
+            context.state.userPassword = oldPassword
+            context.commit('toAes')
+            oldPassword = context.state.aesQuestData
+            //加密新密码
+            context.state.userPassword = newPassword
+            context.commit('toAes')
+            newPassword = context.state.aesQuestData
+
+            payload.oldPwd=oldPassword
+            payload.newPwd=newPassword
+
+            context.commit('toRsa')
+
+            apis.changUserPassword(payload, context.state.RsaRandomKey)
+                .then(res => {
+                    if (res.resultCode !== 1180) { //判断业务状态码
+                        Message.warning(res.resultCode + ' ' + res.message + ' ' + res.reason)
+                        return
+                    }
+                    Message.success('修改成功')
+                    context.commit('goBack',0)
+                }).catch(err => {
+                Message.error('修改失败')
+                console.log(err)
+            })
+        }
     },
     getters: {
         checkLogin() { //检查是否登录

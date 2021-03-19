@@ -13,13 +13,6 @@
             videoMessage
         },
         mounted() {
-            this.$store.dispatch('getCurVideo',{
-
-            }).then(res => {
-
-            }).catch(err => {
-
-            })
         },
         methods:{
 

@@ -16,8 +16,8 @@
                     <el-input v-model="form.userEmail" autocomplete="off" ></el-input>
                 </el-form-item>
                 <el-form-item label="性别" :label-width="formLabelWidth">
-                    <el-radio v-model="form.userGender" label="1" value="1">男</el-radio>
-                    <el-radio v-model="form.userGender" label="0" value="0">女</el-radio>
+                    <el-radio v-model="form.userGender" label="1">男</el-radio>
+                    <el-radio v-model="form.userGender" label="0">女</el-radio>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+    import router from "../../../router";
+
     export default {
         name: "changeMg",
         data(){
@@ -51,9 +53,7 @@
             return {
                 form:{},
                 originForm:{},
-                toUpForm:{
-                    uid:this.$store.getters.getUser.userId
-                },
+                toUpForm:{},
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
                 rules: {
@@ -68,6 +68,7 @@
         },
         mounted() {
             this.getMessage()
+            this.getUserMg()
         },
         watch: {
             'form.username': {
@@ -99,7 +100,7 @@
             },
             'form.userGender': {
                 handler: function(val) {
-                    if (val !== String(this.originForm.userGender)) {
+                        if (val !== String(this.originForm.userGender)) {
                         this.toUpForm.userGender = val
                     } else {
                         this.$delete(this.toUpForm, 'userGender')
@@ -126,7 +127,35 @@
                 });
             },
             toChange(){
-                console.log(this.toUpForm);
+                console.log("asd")
+                this.$store.dispatch('changeUserMessage',this.toUpForm)
+                .then(res => {
+                    if (res.resultCode !== 1170) { //判断业务状态码
+                        this.$message.warning(res.resultCode + ' ' + res.message +' '+ res.reason);
+                        return;
+                    }
+                    this.$message.success('修改成功')
+                    this.getUserMg()
+                    setTimeout(function () {
+                        router.go(0) //刷新
+                    }, 1000);
+                }).catch(err => {
+                    this.$message.error('修改失败')
+                    console.log(err);
+                })
+            },
+            getUserMg(){
+                this.$store.dispatch('getUserMg', this.$store.getters.getMessage.uid)
+                    .then(res => {
+                        if (res.resultCode !== 1140) { //判断业务状态码
+                            this.$message.warning(res.resultCode + ' ' + res.message);
+                            return;
+                        }
+                        localStorage.setItem("user", JSON.stringify(res.data.userDetails));
+                    }).catch(err => {
+                    this.$message.error('获取用户信息失败')
+                    console.log(err)
+                })
             }
         }
     }

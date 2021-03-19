@@ -39,7 +39,7 @@
                 courseId:this.curriculumId
             }).then(res => {
                 if (res.resultCode !== 1510) { //判断业务状态码
-                    console.log(res.resultCode + ' ' + res.message);
+                    console.log(res.resultCode + ' ' + res.message + ' ' + res.reason);
                     return
                 }
                 this.videoList = res.data.videos

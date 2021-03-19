@@ -1,28 +1,28 @@
 <template>
-    <div class="favoritesCard">
-        <img src="../../../assets/img/test/test1.webp" alt="">
+    <div class="favoritesCard" @click="$router.push('/curriculum/'+item.courseId)">
+        <img :src="$store.state.targetURL + item.courseCover" alt="">
         <div class="cardContent d-inline-block ml-3">
-            <div class="cardTitle">改稿修炼手册！一个能抢钱的Banner到底怎么排？</div>
+            <div class="cardTitle">{{ item.courseTitle }}</div>
             <div class="mt-3">
                 <div class="d-inline-block">
                     <i class="bi bi-collection-play-fill" style="color: #ff6283"> </i>
-                    <span>播放量：12542</span>
+                    <span>播放量：{{ item.viewCounts }}</span>
                 </div>
                 <div class="d-inline-block ml-4">
                     <i class="bi bi-bookmark-plus-fill" style="color: #ffb259"></i>
-                    <span>收藏量：4142</span>
+                    <span>收藏量：{{ item.favoriteCounts }}</span>
                 </div>
             </div>
             <div class="cardFooter">
-                <el-avatar size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
-                <span class="ml-2">William.will</span>
+                <el-avatar size="small" :src="$store.state.targetURL + item.teacherAvatar"></el-avatar>
+                <span class="ml-2">{{ item.teacherName }}</span>
                 <div class="float-right">
-                    <el-tag type="success" size="small">编程课</el-tag>
-                    <el-tag type="warning" size="small" style="margin-left: 5px">Python</el-tag>
+                    <el-tag type="success" class="mr-2" @click.stop="toCate(item.categoryParentUrlName,item.categoryParentId)">{{ item.categoryParent }}</el-tag>
+                    <el-tag type="warning" @click.stop="toCate(item.categoryParentUrlName,item.categoryChildrenId)">{{ item.categoryChildren}}</el-tag>
                 </div>
             </div>
         </div>
-        <div class="favoritesDelete" @click="favoritesDelete">
+        <div class="favoritesDelete" @click.stop="favoritesDelete">
             <i class="bi bi-x-circle"></i>
         </div>
     </div>
@@ -31,6 +31,9 @@
 <script>
     export default {
         name: "favoritesItem",
+        props:{
+          item:Object
+        },
         methods:{
             favoritesDelete() {
                 this.$confirm('是否取消此收藏？, 是否继续?', '提示', {
@@ -39,17 +42,34 @@
                     lockScroll:false,
                     type: 'warning'
                 }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    });
+                    this.$store.dispatch('delFavorite',{
+                        courseId:this.item.courseId
+                    }).then(res => {
+                        if (res.resultCode !== 1221) { //判断业务状态码
+                            this.$message.warning(res.resultCode + ' ' + res.message +' '+ res.reason);
+                            return;
+                        }
+                        this.$message.success('成功取消收藏')
+                        this.$emit('reGetFa')
+                    }).catch(err => {
+                        this.$message.error('取消收藏失败')
+                        console.log(err)
+                    })
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: '已取消'
                     });
                 });
-            }
+            },
+            toCate(path,code){
+                this.$router.push({
+                    path:'/category/'+path,
+                    query:{
+                        cur:code
+                    }
+                })
+            },
         }
     }
 </script>

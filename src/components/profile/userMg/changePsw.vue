@@ -18,7 +18,7 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogPasswordVisible = false">取 消</el-button>
                 <el-button type="primary"
-                           @click="dialogPasswordVisible = false"
+                           @click="changeUserPsw"
                            style="background-color: #e37426;border-color: #e37426">
                     确认修改
                 </el-button>
@@ -41,6 +41,22 @@
               formLabelWidth: '120px'
           }
         },
+        methods:{
+            changeUserPsw(){
+                if (!this.changePsw.newPsw || !this.changePsw.reNewPsw || !this.changePsw.oldPsw){
+                    this.$message.warning('不能为空')
+                    return
+                }
+                if (this.changePsw.newPsw !== this.changePsw.reNewPsw){
+                    this.$message.warning('请确认新密码输入一致')
+                    return
+                }
+                this.$store.dispatch('updatePassword',{
+                    oldPwd:this.changePsw.oldPsw,
+                    newPwd:this.changePsw.newPsw
+                })
+            }
+        }
     }
 </script>
 
