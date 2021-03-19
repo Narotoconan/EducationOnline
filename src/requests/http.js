@@ -41,8 +41,8 @@ axios.interceptors.response.use((response) => {
             Message({ type: 'error', message: '400 发出的请求有错误' })
             break;
         case 401:
-            Message({ type: 'error', message: '401' })
-            //window.location.href='/login'
+            //Message({ type: 'error', message: '401' })
+            window.location.href='/login'
             break;
         case 403:
             Message.error({message:'403 用户得到授权，但是访问是被禁止的!'})
