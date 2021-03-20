@@ -5,7 +5,7 @@ import JSEncrypt from 'jsencrypt/bin/jsencrypt.min'
 import jwtDecode from "jwt-decode";
 import {Message} from "element-ui";
 import router from "../../router";
-import el from "element-ui/src/locale/lang/el";
+import VueCookie from 'vue-cookie'
 
 export default {
     state: {
@@ -53,19 +53,21 @@ LjOrx7KoW0KlL2xx9wIDAQAB
             //RSA加密
             state.RsaRandomKey = encrypt.encrypt(state.RandomKey).toString();
         },
-        exitUserLogin(state,payload) {
+        exitUserLogin(state, payload) {
             localStorage.removeItem('access_token')
             localStorage.removeItem('userMessage')
             localStorage.removeItem('user')
+            VueCookie.delete('access_token')
+            VueCookie.delete('JSESSIONID')
             if (payload) return
             window.location.href = '/home'
         },
-        goBack(state,payload){
+        goBack(state, payload) {
 
             setTimeout(function () {
-                if (window.history.length === 0){
-                    window.location.href='/home'
-                }else {
+                if (window.history.length === 0) {
+                    window.location.href = '/home'
+                } else {
                     router.go(payload) //返回上一个页面
                 }
             }, 1000);
@@ -92,7 +94,7 @@ LjOrx7KoW0KlL2xx9wIDAQAB
                     let userMessage = jwtDecode(res.data.token)//解析token信息
                     localStorage.setItem("userMessage", JSON.stringify(userMessage)); //存放用户信息
                     Message.success('登录成功')
-                    context.commit('goBack',-1)
+                    context.commit('goBack', -1)
                 }).catch(err => {
                 Message.error('登录失败')
                 console.log(err)
@@ -111,13 +113,13 @@ LjOrx7KoW0KlL2xx9wIDAQAB
                         return
                     }
                     Message.success('注册成功')
-                    context.commit('goBack',-1)
+                    context.commit('goBack', -1)
                 }).catch(err => {
                 Message.error('注册失败')
                 console.log(err)
             })
         },
-        updatePassword(context, payload){
+        updatePassword(context, payload) {
             let oldPassword = payload.oldPwd
             let newPassword = payload.newPwd
 
@@ -131,8 +133,8 @@ LjOrx7KoW0KlL2xx9wIDAQAB
             context.commit('toAes')
             newPassword = context.state.aesQuestData
 
-            payload.oldPwd=oldPassword
-            payload.newPwd=newPassword
+            payload.oldPwd = oldPassword
+            payload.newPwd = newPassword
 
             context.commit('toRsa')
 
@@ -143,7 +145,7 @@ LjOrx7KoW0KlL2xx9wIDAQAB
                         return
                     }
                     Message.success('修改成功')
-                    context.commit('goBack',0)
+                    context.commit('goBack', 0)
                 }).catch(err => {
                 Message.error('修改失败')
                 console.log(err)

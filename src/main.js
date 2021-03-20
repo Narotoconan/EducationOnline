@@ -7,10 +7,12 @@ import jquery from 'jquery'
 import Popper from 'popper.js'
 import bootstrap from  'bootstrap'
 import element from 'element-ui'
+import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 
 Vue.use(element);
+Vue.use(VueCookie);
 
 new Vue({
   router,
@@ -18,7 +20,6 @@ new Vue({
   jquery,
   Popper,
   bootstrap,
-  element,
   render: h => h(App)
 }).$mount('#app')
 
