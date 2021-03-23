@@ -6,6 +6,7 @@
                           :index="index"
                           :key="item.historyId">
             </browsed-card>
+            <p v-if="loading">加载中...</p>
         </div>
         <div v-else style="text-align: center;font-size: 3.5rem;color: rgba(0,0,0,.2);padding: 3rem">
             暂无浏览历史
@@ -23,6 +24,7 @@
         },
         data() {
             return {
+                loading:false,
                 browsedList:[],
                 hasNext:true,
                 page:1,
@@ -33,20 +35,26 @@
         },
         methods: {
             load() {
-                if (!this.hasNext) {
+                /*if (!this.hasNext) {
                     if (this.browsedList.length > 6){
                         this.$message.warning('已经加载到底了')
                     }
                     return
+                }*/
+                if (this.hasNext){
+                    this.page++
+                    this.getBrowsed(this.page)
+                    return
                 }
-                this.page++
-                this.getBrowsed(this.page)
+                if (this.browsedList.length > 6){
+                    this.$message.warning('已经加载到底了')
+                }
             },
             getBrowsed(page){
                 this.page =page
                 this.$store.dispatch('getUserBrowsed',{
                     c:page,
-                    s:6
+                    s:1
                 }).then(res => {
                     if (res.resultCode !== 1150) { //判断业务状态码
                         this.$message.warning(res.resultCode + ' ' + res.message +' '+ res.reason);

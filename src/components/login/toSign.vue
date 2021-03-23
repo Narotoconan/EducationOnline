@@ -81,6 +81,12 @@
                 })
             },
             signAccount(){
+                for (let key of Object.values(this.sign)) {
+                    if (!key) {
+                        this.$message.warning('相关注册信息不能为空')
+                        return
+                    }
+                }
                 this.$store.dispatch('toSignAccount',this.sign)
             }
         }
